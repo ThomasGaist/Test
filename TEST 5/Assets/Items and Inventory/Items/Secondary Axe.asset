@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b7a66690ec34493ab17424be58d88f6, type: 3}
+  m_Name: Secondary Axe
+  m_EditorClassIdentifier: 
+  id: 3f682cb0886d34fee91837a50edaa7f6
+  ItemName: Secondary Axe
+  Icon: {fileID: 21300000, guid: 6c8e1477a64d84434bb48be1a4d2ae18, type: 3}
+  StrengthBonus: 0
+  AgilityBonus: 0
+  IntelligenceBonus: 0
+  VitalityBonus: 0
+  StrengthPercentBonus: 0
+  AgilityPercentBonus: 0
+  IntelligencePercentBonus: 0
+  VitalityPercentBonus: 0
+  EquipmentType: 5
+  animationClips: []
+  weaponType: 0
+  oneHandedWeapon: 0
+  twoHandedWeapon: 0
+  outerAnimationClips:
+  - {fileID: 7400000, guid: 60bb033d742964dd39fa6c38c8f13643, type: 2}
+  - {fileID: 7400000, guid: be4b747557539422aa461859ec6914f2, type: 2}
+  - {fileID: 7400000, guid: 8b473f591a936437cba0b6a065144ef4, type: 2}
+  - {fileID: 7400000, guid: d7f131a460e5b4f718f7cdf15076c390, type: 2}
+  innerAnimationClips:
+  - {fileID: 7400000, guid: 63e145ae5d87642d79245f613eb30abf, type: 2}
+  - {fileID: 7400000, guid: 0767b3334b78042da8368164e17ed4ec, type: 2}
+  - {fileID: 7400000, guid: d870ed4f4f3fd4f23808c980fafae9f9, type: 2}
+  - {fileID: 7400000, guid: 650bfec892c66401daec597be4016726, type: 2}
