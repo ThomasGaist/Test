@@ -189,7 +189,7 @@ public class Enemy : Character
             {
                 lootForDrop.GetComponent<SpriteRenderer>().enabled = true;
                 Instantiate(lootForDrop, transform.position, Quaternion.identity);
-
+                lootForDrop.GetComponent<DroppedLoot>().Dropped = true;
             }
         }
     }
