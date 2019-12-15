@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loots:
   - lootItem: {fileID: 11400000, guid: 9be636f3e708a4b8ca1438ec4ed9427a, type: 2}
-    lootChance: 50
+    lootChance: 100
   - lootItem: {fileID: 11400000, guid: 17990cf5e43664bcfa1827e2bb46643d, type: 2}
     lootChance: 50

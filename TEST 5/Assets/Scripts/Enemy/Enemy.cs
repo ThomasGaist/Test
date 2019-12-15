@@ -19,6 +19,7 @@ public class Enemy : Character
 
     public float chaseMultiplier = 1.5f;
 
+
     [SerializeField]
     public float meleeRange = 3f; 
     public bool InMeleeRange
@@ -174,7 +175,11 @@ public class Enemy : Character
     public override void Death()
     {
         MakeLoot();
+
+        //Will only use this until good death animation. 
         Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
+        
     }
 
     //Loot method
@@ -188,8 +193,16 @@ public class Enemy : Character
             if(current != null)
             {
                 lootForDrop.GetComponent<SpriteRenderer>().enabled = true;
-                Instantiate(lootForDrop, transform.position, Quaternion.identity);
                 lootForDrop.GetComponent<DroppedLoot>().Dropped = true;
+                lootForDrop.GetComponent<DroppedLoot>().Layer++;
+                if(lootForDrop.GetComponent<DroppedLoot>().Layer >= 1000)
+                {
+                    lootForDrop.GetComponent<DroppedLoot>().Layer = 0;
+                }
+                GameObject nextLoot = Instantiate(lootForDrop, new Vector3((transform.position.x + Random.Range(-20.0f,20.0f)), transform.position.y, transform.position.z), Quaternion.identity);
+                nextLoot.GetComponent<SpriteRenderer>().sortingOrder = lootForDrop.GetComponent<DroppedLoot>().Layer;
+                nextLoot.active = true;
+
             }
         }
     }
