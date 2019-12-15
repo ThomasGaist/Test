@@ -5,7 +5,12 @@ using UnityEngine;
 public class Enemy : Character
 {
     //Loot
-   
+    [SerializeField]
+    private LootTable thisLoot;
+    public LootTable ThisLoot { get => thisLoot;}
+    [SerializeField]
+    private GameObject lootForDrop;
+
     private IEnemyState currentState;
 
     public GameObject Target { get; set; }
@@ -36,6 +41,8 @@ public class Enemy : Character
         }
     }
 
+   
+
     public override void Start()
     {
         base.Start();
@@ -49,7 +56,10 @@ public class Enemy : Character
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Death();
+        }
         if (!IsDead)
         {
             if (!TakingDamage)
@@ -163,10 +173,25 @@ public class Enemy : Character
 
     public override void Death()
     {
-       
+        MakeLoot();
         Destroy(gameObject);
     }
 
+    //Loot method
+    private void MakeLoot()
+    {
+        if(ThisLoot != null)
+        {
+            lootForDrop.GetComponent<SpriteRenderer>().enabled = false;
+            Item current = ThisLoot.lootDrop();
+            lootForDrop.GetComponent<DroppedLoot>().MyDroppedLoot = current;
+            if(current != null)
+            {
+                lootForDrop.GetComponent<SpriteRenderer>().enabled = true;
+                Instantiate(lootForDrop, transform.position, Quaternion.identity);
 
+            }
+        }
+    }
     
 }
