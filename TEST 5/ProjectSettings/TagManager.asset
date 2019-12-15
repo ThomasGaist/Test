@@ -50,15 +50,15 @@ TagManager:
   - name: Background
     uniqueID: 3242313793
     locked: 0
-  - name: Character
-    uniqueID: 1932039611
-    locked: 0
   - name: Ground
     uniqueID: 4102274905
     locked: 0
-  - name: UI
-    uniqueID: 3319112873
-    locked: 0
   - name: Loot
     uniqueID: 1841610459
+    locked: 0
+  - name: Character
+    uniqueID: 1932039611
+    locked: 0
+  - name: UI
+    uniqueID: 3319112873
     locked: 0

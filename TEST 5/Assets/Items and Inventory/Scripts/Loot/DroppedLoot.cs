@@ -17,6 +17,9 @@ public class DroppedLoot: MonoBehaviour
     private Rigidbody2D rb;
     private CircleCollider2D trigger;
 
+    [SerializeField]
+    private float triggerRadius = 1.5f;
+
     private bool dropped;
     [SerializeField]
     float thrust = 1.0f;
@@ -55,7 +58,7 @@ public class DroppedLoot: MonoBehaviour
         sr.sprite = MyDroppedLoot.Icon;
         collider.offset = new Vector2(0, 0);
         collider.size = new Vector3(sr.bounds.size.x / transform.lossyScale.x, sr.bounds.size.y / transform.lossyScale.y, sr.bounds.size.z / transform.lossyScale.z);
-        trigger.radius = sr.bounds.size.x + 1;
+        trigger.radius = triggerRadius;
         sr.sortingOrder = Layer;
 
 
