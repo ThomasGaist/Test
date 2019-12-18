@@ -7,6 +7,7 @@ public class DroppedLoot: MonoBehaviour
 {
     [SerializeField]
     private Item droppedLoot;
+    
    
     public Item MyDroppedLoot { get => droppedLoot; set => droppedLoot = value; }
     public bool Dropped { get => dropped; set => dropped = value; }
@@ -39,7 +40,10 @@ public class DroppedLoot: MonoBehaviour
         {
             inventory = FindObjectOfType<Inventory>();
         }
+
+       
     }
+
 
     private void Start()
     {
@@ -48,10 +52,11 @@ public class DroppedLoot: MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         trigger = GetComponent<CircleCollider2D>();
         dropped = false;
-       
+
         Physics2D.IgnoreLayerCollision(13, 13);
         //Physics2D.IgnoreLayerCollision(13, 11);
-
+        
+            
     }
     private void Update()
     {  

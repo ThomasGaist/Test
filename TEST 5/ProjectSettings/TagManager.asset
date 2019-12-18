@@ -10,6 +10,7 @@ TagManager:
   - Weapon
   - Cane
   - EnemyMelee
+  - Loot
   layers:
   - Default
   - TransparentFX

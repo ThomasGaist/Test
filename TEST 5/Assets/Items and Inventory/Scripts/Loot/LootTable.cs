@@ -6,14 +6,18 @@ using UnityEngine;
 public class Loot
 {
     public Item lootItem;
-    public float lootChance; 
+    public float lootChance;
+
+    //loot table should generate new Items instead of using prefabs. 
+
 }
 
 [CreateAssetMenu]
 public class LootTable : ScriptableObject
 {
     public Loot[] loots;
-        
+
+    
     public Item lootDrop()
     {
         float cumProb = 0;
@@ -23,6 +27,7 @@ public class LootTable : ScriptableObject
             cumProb += loots[i].lootChance;
             if(currentProb <= cumProb)
             {
+                
                 return loots[i].lootItem;
             }
         }

@@ -188,6 +188,7 @@ public class Enemy : Character
         if(ThisLoot != null)
         {
             lootForDrop.GetComponent<SpriteRenderer>().enabled = false;
+            
             Item current = ThisLoot.lootDrop();
             lootForDrop.GetComponent<DroppedLoot>().MyDroppedLoot = current;
             if(current != null)
