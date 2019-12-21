@@ -27,5 +27,9 @@ public interface IRDSObject
     void OnRDSHit(EventArgs e);
     void OnRDSPostResultEvaluation(ResultEventArgs e);
 
+    //ToString with indentation
+
+    string ToString(int indentationLevel);
+
     #endregion
 }
