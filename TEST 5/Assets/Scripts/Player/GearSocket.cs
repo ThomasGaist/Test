@@ -63,9 +63,13 @@ public class GearSocket : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         UnEquip(defaultClips);
+    }
+    void FixedUpdate()
+    {
+       
         MyAnimator.SetFloat("Speed", Speed);
         MyAnimator.SetBool("OnGround", OnGround);
        

@@ -68,8 +68,7 @@ public class WeaponSocket : GearSocket
     // Update is called once per frame
     void Update()
     {
-        MyAnimator.SetFloat("Speed", Speed);
-        MyAnimator.SetBool("OnGround", OnGround);
+       
 
         weapon1 = Weapon1Equipped();
         weapon2 = Weapon2Equipped();
@@ -100,6 +99,15 @@ public class WeaponSocket : GearSocket
         
 
     }
+
+   /*
+    * parameters set in base class, redundant in this class
+    * private void FixedUpdate()
+    {
+        //Animation parameters
+        MyAnimator.SetFloat("Speed", Speed);
+        MyAnimator.SetBool("OnGround", OnGround);
+    }*/
 
     private void AddAnimations(EquippableWeapon equippedWeapon, AnimationClip[] outerAnimations, AnimationClip[] innerAnimations)
     {
