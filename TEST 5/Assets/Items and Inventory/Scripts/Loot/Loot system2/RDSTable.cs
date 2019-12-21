@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Text;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -133,5 +133,90 @@ public class RDSTable : IRDSTable
         }
     }
 
+    public virtual IEnumerable<IRDSObject> rdsResult
+    {
+        get
+        {
+            List<IRDSObject> rv = new List<IRDSObject>();
+            uniquedrops = new List<IRDSObject>();
+
+            foreach (IRDSObject o in mcontents)
+                o.OnRDSPreResultEvaluation(EventArgs.Empty);
+
+            foreach (IRDSObject o in mcontents.Where(e => e.rdsAlways && e.rdsEnabled))
+                AddToResult(rv, o);
+
+            int alwayscnt = mcontents.Count(e => e.rdsAlways && e.rdsEnabled);
+            int realdropcnt = rdsCount - alwayscnt;
+
+            if(realdropcnt > 0)
+            {
+                for (int dropcount = 0; dropcount < realdropcnt; dropcount++)
+                {
+                    IEnumerable<IRDSObject> dropables = mcontents.Where(e => e.rdsEnabled && !e.rdsAlways);
+
+                    double hitvalue = RDSRandom.GetDoubleValue(dropables.Sum(e => e.rdsProbability));
+
+                    double runningvalue = 0;
+                    foreach (IRDSObject o in dropables)
+                    {
+                        runningvalue += o.rdsProbability;
+                        if(hitvalue < runningvalue)
+                        {
+                            AddToResult(rv, o);
+                            break; 
+                        }
+                    }
+                }
+            }
+
+            ResultEventArgs rea = new ResultEventArgs(rv);
+            foreach (IRDSObject o in rv)
+                o.OnRDSPostResultEvaluation(rea);
+
+            return rv; 
+
+        }
+    }
+
+    #endregion
+
+
+    #region IRDSObject Members
+
+    public double rdsProbability { get; set; }
+
+    public bool rdsUnique { get; set; }
+
+    public bool rdsAlways { get; set; }
+
+    public bool rdsEnabled { get; set; }
+
+    public RDSTable rdsTable { get; set; }
+
+    #endregion
+
+
+    #region TOSTRING
+    public override string ToString()
+    {
+        return ToString(0);
+    }
+
+    public string ToString(int indentationLevel)
+    {
+        string indent = "".PadRight(4 * indentationLevel, ' ');
+
+        StringBuilder sb = new StringBuilder();
+        sb.AppendFormat(indent + "(RDSTable){0} Entries:{1}, Prob:{2}, UAE:{3}{4}{5}{6}",
+            this.GetType().Name, mcontents.Count, rdsProbability,
+            (rdsUnique ? "1" : "0"), (rdsAlways ? "1" : "0"), (rdsEnabled ? "1" : "0"), (mcontents.Count > 0 ? "\r\n" : ""));
+
+        foreach (IRDSObject o in mcontents)
+            sb.AppendLine(indent + o.ToString(indentationLevel + 1));
+        return sb.ToString();
+        
+
+    }
     #endregion
 }
