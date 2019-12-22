@@ -7,5 +7,5 @@ using System.Security.Cryptography;
 
 public static class RDSRandom
 {
- //Koder senere.
+ 
 }

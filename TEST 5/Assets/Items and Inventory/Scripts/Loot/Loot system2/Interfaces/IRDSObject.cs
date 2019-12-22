@@ -10,6 +10,7 @@ public interface IRDSObject
     bool rdsUnique { get; set; }
     bool rdsAlways { get; set; }
     bool rdsEnabled { get; set; }
+    RDSTable rdsTable { get; set; }
     #endregion
 
     #region events
