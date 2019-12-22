@@ -53,6 +53,8 @@ public class GearSocket : MonoBehaviour
 
         player = GetComponentInParent<Player>();
 
+     
+
         
     }
 
@@ -74,7 +76,7 @@ public class GearSocket : MonoBehaviour
         MyAnimator.SetBool("OnGround", OnGround);
        
 
-
+        
     }
 
     public void Equip(AnimationClip[] animations)

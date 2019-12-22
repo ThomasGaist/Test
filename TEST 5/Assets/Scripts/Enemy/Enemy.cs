@@ -7,9 +7,11 @@ public class Enemy : Character
     //Loot
     [SerializeField]
     private LootTable thisLoot;
-    public LootTable ThisLoot { get => thisLoot;}
+    public LootTable ThisLoot { get => thisLoot; }
     [SerializeField]
     private GameObject lootForDrop;
+
+    private SpriteRenderer sr;
 
     private IEnemyState currentState;
 
@@ -18,6 +20,19 @@ public class Enemy : Character
     public float movementSpeed;
 
     public float chaseMultiplier = 1.5f;
+
+    #region VITALS and LEVEL
+
+    private int level = 1;
+
+
+    private LootTables lootDropper;
+    private int lootlevel = 0;
+    public int LootLevel {get => lootlevel;}
+
+    public int EnemyLevel { get => level; set => level = value; }
+
+    #endregion
 
 
     [SerializeField]
@@ -42,13 +57,13 @@ public class Enemy : Character
         }
     }
 
-   
 
     public override void Start()
     {
         base.Start();
         Player.Instance.Dead += new DeadEventHandler(RemoveTarget);
-
+        sr = GetComponent<SpriteRenderer>();
+        lootDropper = FindObjectOfType<LootTables>();
 
         ChangeState(new IdleState());
         
@@ -59,7 +74,8 @@ public class Enemy : Character
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Death();
+            health = 0;
+            //Death();
         }
         if (!IsDead)
         {
@@ -71,7 +87,13 @@ public class Enemy : Character
             
             LookAtTarget();
         }
+        if (IsDead && lootDropper.MyLootDropped == true)
+        {
+            Death();
+        }
     }
+
+
 
     public void RemoveTarget()
     {
@@ -174,14 +196,17 @@ public class Enemy : Character
 
     public override void Death()
     {
-        MakeLoot();
+        // MakeLoot();
 
         //Will only use this until good death animation. 
         Destroy(gameObject);
         Destroy(transform.parent.gameObject);
-        
+
+        //transparent on Death()
+      
     }
 
+/*
     //Loot method
     private void MakeLoot()
     {
@@ -206,6 +231,6 @@ public class Enemy : Character
 
             }
         }
-    }
+    }*/
     
 }

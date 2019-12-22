@@ -19,6 +19,9 @@ public class DroppedLoot: MonoBehaviour
     private CircleCollider2D trigger;
 
     [SerializeField]
+    private string ID;
+
+    [SerializeField]
     private float triggerRadius = 1.5f;
 
     private bool dropped;

@@ -17,6 +17,7 @@ public enum EquipmentType
 [CreateAssetMenu]
 public class EquippableItem : Item
 {
+    public int level; 
 
     //Speed and different resists (fireresist etc.) should be added later
     public int StrengthBonus;
