@@ -17,7 +17,7 @@ public class LootTables : MonoBehaviour
     //Loot list
     [SerializeField]
     private List<Item> loot = new List<Item>();
-    //private List<Item> tmp = new List<Item>();
+    private List<Item> tmp = new List<Item>();
 
     //List of Live Enemies
     [SerializeField]
@@ -75,14 +75,21 @@ public class LootTables : MonoBehaviour
                     loot.Add(item);  
                 }
                 lootDropped = true;
-                SpawnLoot(enemies[i]);
-                tmpEnemies.RemoveAt(i);
-                lootDropped = false;
+
+                if(loot!= null)
+                {
+                    SpawnLoot(enemies[i]);
+                }
                 
-                //break;
+                lootDropped = false;
+                tmpEnemies.RemoveAt(i);
+                
+                return;
             }
+
         }
         enemies = new List<GameObject>(tmpEnemies);
+        loot = new List<Item>(tmp);
     }
 
     #endregion
@@ -93,7 +100,7 @@ public class LootTables : MonoBehaviour
     {
         lootForDrop.GetComponent<SpriteRenderer>().enabled = false;
 
-        List<Item>tmp = new List<Item>(loot);
+        tmp = new List<Item>(loot);
 
         int count = 0;
         foreach (Item item in loot)
@@ -119,8 +126,8 @@ public class LootTables : MonoBehaviour
             count++;
 
         }
-        loot = new List<Item>(tmp);
-        //return; 
+       
+        return; 
 
         #endregion
     }
