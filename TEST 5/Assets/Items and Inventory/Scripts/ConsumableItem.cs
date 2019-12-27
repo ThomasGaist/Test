@@ -9,7 +9,7 @@ public enum ConsumableType
     Gold, 
 }
 
-
+[CreateAssetMenu]
 public class ConsumableItem : Item
 {
     public ConsumableType consumableType;

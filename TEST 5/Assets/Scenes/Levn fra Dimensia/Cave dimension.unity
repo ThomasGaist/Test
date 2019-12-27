@@ -902,6 +902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae75cebd37b74170a4d372ac073bce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  socketType: 0
   facingRight: 0
   right: 0
   equipmentTypes: 03000000
@@ -910,6 +911,22 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 897b0d002ff414d3db919efe517debe4, type: 2}
   - {fileID: 7400000, guid: dcf603df55cb9412bb484c7f60d8070c, type: 2}
   - {fileID: 7400000, guid: 460ae0927ffc34c4b9caa61de1ee8900, type: 2}
+  outerNoWeapon: []
+  innerNoWeapon: []
+  outerOneHanded: []
+  innerOneHanded: []
+  weaponSocket1: {fileID: 0}
+  weaponSocket2: {fileID: 0}
+  oneHandedEquipped1: 0
+  oneHandedEquipped2: 0
+  weaponSlot1: {fileID: 0}
+  weaponSlot2: {fileID: 0}
+  outerAnimations1: []
+  innerAnimations1: []
+  outerAnimations2: []
+  innerAnimations2: []
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}
 --- !u!1 &153349842
 GameObject:
   m_ObjectHideFlags: 0
@@ -4166,6 +4183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae75cebd37b74170a4d372ac073bce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  socketType: 0
   facingRight: 0
   right: 0
   equipmentTypes: 
@@ -4174,6 +4192,22 @@ MonoBehaviour:
   - {fileID: 7400000, guid: eed46a8ed6ea8477f956c373370c7a36, type: 2}
   - {fileID: 7400000, guid: 6f935e74c4d524854a7a676070dae055, type: 2}
   - {fileID: 7400000, guid: 97d9d8901254b41f2bd43bda098897c9, type: 2}
+  outerNoWeapon: []
+  innerNoWeapon: []
+  outerOneHanded: []
+  innerOneHanded: []
+  weaponSocket1: {fileID: 0}
+  weaponSocket2: {fileID: 0}
+  oneHandedEquipped1: 0
+  oneHandedEquipped2: 0
+  weaponSlot1: {fileID: 0}
+  weaponSlot2: {fileID: 0}
+  outerAnimations1: []
+  innerAnimations1: []
+  outerAnimations2: []
+  innerAnimations2: []
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}
 --- !u!1 &702577855
 GameObject:
   m_ObjectHideFlags: 0
@@ -4216,13 +4250,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 702577855}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3684b59083bd84433ba103d571a5415a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ae75cebd37b74170a4d372ac073bce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  socketType: 2
   facingRight: 0
   right: 0
-  equipmentTypes: 05000000
+  equipmentTypes: 
   defaultClips: []
+  outerNoWeapon: []
+  innerNoWeapon: []
+  outerOneHanded: []
+  innerOneHanded: []
+  weaponSocket1: {fileID: 0}
+  weaponSocket2: {fileID: 0}
+  oneHandedEquipped1: 0
+  oneHandedEquipped2: 0
   weaponSlot1: {fileID: 1283842172}
   weaponSlot2: {fileID: 1943498539}
   outerAnimations1: []
@@ -4504,7 +4547,7 @@ GameObject:
   - component: {fileID: 735172529}
   - component: {fileID: 735172532}
   - component: {fileID: 735172531}
-  - component: {fileID: 735172530}
+  - component: {fileID: 735172533}
   m_Layer: 11
   m_Name: Right Hand Weapon
   m_TagString: Player
@@ -4526,30 +4569,6 @@ Transform:
   m_Father: {fileID: 8666341819891921732}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &735172530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 735172528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3684b59083bd84433ba103d571a5415a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  facingRight: 0
-  right: 1
-  equipmentTypes: 04000000
-  defaultClips: []
-  weaponSlot1: {fileID: 1283842172}
-  weaponSlot2: {fileID: 1943498539}
-  outerAnimations1: []
-  innerAnimations1: []
-  outerAnimations2: []
-  innerAnimations2: []
-  weapon1: {fileID: 0}
-  weapon2: {fileID: 0}
 --- !u!95 &735172531
 Animator:
   serializedVersion: 3
@@ -4618,6 +4637,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &735172533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735172528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae75cebd37b74170a4d372ac073bce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  socketType: 2
+  facingRight: 0
+  right: 1
+  equipmentTypes: 
+  defaultClips: []
+  outerNoWeapon: []
+  innerNoWeapon: []
+  outerOneHanded: []
+  innerOneHanded: []
+  weaponSocket1: {fileID: 735172533}
+  weaponSocket2: {fileID: 702577857}
+  oneHandedEquipped1: 0
+  oneHandedEquipped2: 0
+  weaponSlot1: {fileID: 1283842172}
+  weaponSlot2: {fileID: 1943498539}
+  outerAnimations1: []
+  innerAnimations1: []
+  outerAnimations2: []
+  innerAnimations2: []
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}
 --- !u!1 &744906411
 GameObject:
   m_ObjectHideFlags: 0
@@ -6371,7 +6423,6 @@ GameObject:
   - component: {fileID: 960330518}
   - component: {fileID: 960330517}
   - component: {fileID: 960330519}
-  - component: {fileID: 960330520}
   m_Layer: 11
   m_Name: Outer hand socket
   m_TagString: Player
@@ -6473,6 +6524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae75cebd37b74170a4d372ac073bce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  socketType: 1
   facingRight: 0
   right: 1
   equipmentTypes: 02000000
@@ -6481,22 +6533,6 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 2b5eb30cb745740fbbf0c1f8e0122385, type: 2}
   - {fileID: 7400000, guid: c9b92aedeffbc45e2845cee97c1f6943, type: 2}
   - {fileID: 7400000, guid: e24c2f5403cc342189909ea7fa986720, type: 2}
---- !u!114 &960330520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960330515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21febcea954cd4c66aeb8b43da3b8c23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  facingRight: 0
-  right: 1
-  equipmentTypes: 
-  defaultClips: []
   outerNoWeapon:
   - {fileID: 7400000, guid: 3480ec046bbd6409c97a10be8b26184d, type: 2}
   - {fileID: 7400000, guid: 2b5eb30cb745740fbbf0c1f8e0122385, type: 2}
@@ -6517,10 +6553,18 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 0d11bdaee9d6c4d418bfa00453d35c35, type: 2}
   - {fileID: 7400000, guid: 8897d372df6b5442f9c751233ceec584, type: 2}
   - {fileID: 7400000, guid: db5301b896e7a4b60a0e4e762550b16a, type: 2}
-  weaponSocket1: {fileID: 735172530}
-  weaponSocket2: {fileID: 702577857}
+  weaponSocket1: {fileID: 0}
+  weaponSocket2: {fileID: 0}
   oneHandedEquipped1: 0
   oneHandedEquipped2: 0
+  weaponSlot1: {fileID: 0}
+  weaponSlot2: {fileID: 0}
+  outerAnimations1: []
+  innerAnimations1: []
+  outerAnimations2: []
+  innerAnimations2: []
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}
 --- !u!1 &979665221
 GameObject:
   m_ObjectHideFlags: 0
@@ -7366,6 +7410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae75cebd37b74170a4d372ac073bce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  socketType: 0
   facingRight: 0
   right: 0
   equipmentTypes: 
@@ -7374,6 +7419,22 @@ MonoBehaviour:
   - {fileID: 7400000, guid: adda034854b784afabfd987f2d457c13, type: 2}
   - {fileID: 7400000, guid: 9f179310d44bf4998970744484cb5f97, type: 2}
   - {fileID: 7400000, guid: cd458e153e593474dbe5a3cbae7ef7f1, type: 2}
+  outerNoWeapon: []
+  innerNoWeapon: []
+  outerOneHanded: []
+  innerOneHanded: []
+  weaponSocket1: {fileID: 0}
+  weaponSocket2: {fileID: 0}
+  oneHandedEquipped1: 0
+  oneHandedEquipped2: 0
+  weaponSlot1: {fileID: 0}
+  weaponSlot2: {fileID: 0}
+  outerAnimations1: []
+  innerAnimations1: []
+  outerAnimations2: []
+  innerAnimations2: []
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}
 --- !u!1 &1124302120
 GameObject:
   m_ObjectHideFlags: 0
@@ -7552,7 +7613,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2a8b008973a4998b876b9ea4e28575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  genericEnemyItems:
+  - {fileID: 11400000, guid: edb484a003bb34549a9bb2afd6d5b638, type: 2}
+  - {fileID: 11400000, guid: 1525b40a2d14d442988f6f45c9e4af5e, type: 2}
   loot: []
+  tmp: []
   enemies: []
   lootForDrop: {fileID: 801172169}
 --- !u!4 &1175731928
@@ -10535,7 +10600,6 @@ GameObject:
   - component: {fileID: 1757245660}
   - component: {fileID: 1757245659}
   - component: {fileID: 1757245658}
-  - component: {fileID: 1757245661}
   m_Layer: 11
   m_Name: Inner arm socket
   m_TagString: Player
@@ -10569,6 +10633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae75cebd37b74170a4d372ac073bce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  socketType: 1
   facingRight: 0
   right: 0
   equipmentTypes: 
@@ -10577,6 +10642,38 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 140294ad7041b425d8df896a5e3511ec, type: 2}
   - {fileID: 7400000, guid: ff60dc84f18964259b50579f07cf7040, type: 2}
   - {fileID: 7400000, guid: f55cadbec0d9b4b06bdd1e079dd132ca, type: 2}
+  outerNoWeapon:
+  - {fileID: 7400000, guid: 5c679f23f0bf341a185e4db61782a980, type: 2}
+  - {fileID: 7400000, guid: 2ac3231203acd4843a6cf55e424ae2eb, type: 2}
+  - {fileID: 7400000, guid: d85b03f14a9464a7090fa160354a677b, type: 2}
+  - {fileID: 7400000, guid: 1f699bbb9b7604015b28bedc9c28e88d, type: 2}
+  innerNoWeapon:
+  - {fileID: 7400000, guid: be1ab418831004c1e9a083639d8d2078, type: 2}
+  - {fileID: 7400000, guid: 140294ad7041b425d8df896a5e3511ec, type: 2}
+  - {fileID: 7400000, guid: ff60dc84f18964259b50579f07cf7040, type: 2}
+  - {fileID: 7400000, guid: f55cadbec0d9b4b06bdd1e079dd132ca, type: 2}
+  outerOneHanded:
+  - {fileID: 7400000, guid: be5ba0ec225e94699baf5996afe0b9dd, type: 2}
+  - {fileID: 7400000, guid: 55f392bc083b44af7ae5b6538b95b0d8, type: 2}
+  - {fileID: 7400000, guid: 9625790fd4cf54b27a609f36296efab8, type: 2}
+  - {fileID: 7400000, guid: 02f771f78693f4f4d8c27f8eb1feaddc, type: 2}
+  innerOneHanded:
+  - {fileID: 7400000, guid: 9e889ce8c91734693a742ac55b542057, type: 2}
+  - {fileID: 7400000, guid: 507a226ff1010475080b92cab4823f95, type: 2}
+  - {fileID: 7400000, guid: b8e355f5c42c34fb9af3be99ab5e1293, type: 2}
+  - {fileID: 7400000, guid: be0758cf170c9488d86a51663e977412, type: 2}
+  weaponSocket1: {fileID: 0}
+  weaponSocket2: {fileID: 0}
+  oneHandedEquipped1: 0
+  oneHandedEquipped2: 0
+  weaponSlot1: {fileID: 0}
+  weaponSlot2: {fileID: 0}
+  outerAnimations1: []
+  innerAnimations1: []
+  outerAnimations2: []
+  innerAnimations2: []
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}
 --- !u!95 &1757245659
 Animator:
   serializedVersion: 3
@@ -10645,46 +10742,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1757245661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1757245656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21febcea954cd4c66aeb8b43da3b8c23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  facingRight: 0
-  right: 0
-  equipmentTypes: 
-  defaultClips: []
-  outerNoWeapon:
-  - {fileID: 7400000, guid: 5c679f23f0bf341a185e4db61782a980, type: 2}
-  - {fileID: 7400000, guid: 2ac3231203acd4843a6cf55e424ae2eb, type: 2}
-  - {fileID: 7400000, guid: d85b03f14a9464a7090fa160354a677b, type: 2}
-  - {fileID: 7400000, guid: 1f699bbb9b7604015b28bedc9c28e88d, type: 2}
-  innerNoWeapon:
-  - {fileID: 7400000, guid: be1ab418831004c1e9a083639d8d2078, type: 2}
-  - {fileID: 7400000, guid: 140294ad7041b425d8df896a5e3511ec, type: 2}
-  - {fileID: 7400000, guid: ff60dc84f18964259b50579f07cf7040, type: 2}
-  - {fileID: 7400000, guid: f55cadbec0d9b4b06bdd1e079dd132ca, type: 2}
-  outerOneHanded:
-  - {fileID: 7400000, guid: be5ba0ec225e94699baf5996afe0b9dd, type: 2}
-  - {fileID: 7400000, guid: 55f392bc083b44af7ae5b6538b95b0d8, type: 2}
-  - {fileID: 7400000, guid: 9625790fd4cf54b27a609f36296efab8, type: 2}
-  - {fileID: 7400000, guid: 02f771f78693f4f4d8c27f8eb1feaddc, type: 2}
-  innerOneHanded:
-  - {fileID: 7400000, guid: 9e889ce8c91734693a742ac55b542057, type: 2}
-  - {fileID: 7400000, guid: 507a226ff1010475080b92cab4823f95, type: 2}
-  - {fileID: 7400000, guid: b8e355f5c42c34fb9af3be99ab5e1293, type: 2}
-  - {fileID: 7400000, guid: be0758cf170c9488d86a51663e977412, type: 2}
-  weaponSocket1: {fileID: 735172530}
-  weaponSocket2: {fileID: 702577857}
-  oneHandedEquipped1: 0
-  oneHandedEquipped2: 0
 --- !u!1 &1758269652
 GameObject:
   m_ObjectHideFlags: 0
@@ -10856,7 +10913,6 @@ GameObject:
   - component: {fileID: 1796681684}
   - component: {fileID: 1796681687}
   - component: {fileID: 1796681686}
-  - component: {fileID: 1796681688}
   - component: {fileID: 1796681685}
   m_Layer: 11
   m_Name: Outer arm socket
@@ -10891,6 +10947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae75cebd37b74170a4d372ac073bce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  socketType: 1
   facingRight: 0
   right: 1
   equipmentTypes: 
@@ -10899,6 +10956,38 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 2ac3231203acd4843a6cf55e424ae2eb, type: 2}
   - {fileID: 7400000, guid: d85b03f14a9464a7090fa160354a677b, type: 2}
   - {fileID: 7400000, guid: 1f699bbb9b7604015b28bedc9c28e88d, type: 2}
+  outerNoWeapon:
+  - {fileID: 7400000, guid: 5c679f23f0bf341a185e4db61782a980, type: 2}
+  - {fileID: 7400000, guid: 2ac3231203acd4843a6cf55e424ae2eb, type: 2}
+  - {fileID: 7400000, guid: d85b03f14a9464a7090fa160354a677b, type: 2}
+  - {fileID: 7400000, guid: 1f699bbb9b7604015b28bedc9c28e88d, type: 2}
+  innerNoWeapon:
+  - {fileID: 7400000, guid: be1ab418831004c1e9a083639d8d2078, type: 2}
+  - {fileID: 7400000, guid: 140294ad7041b425d8df896a5e3511ec, type: 2}
+  - {fileID: 7400000, guid: ff60dc84f18964259b50579f07cf7040, type: 2}
+  - {fileID: 7400000, guid: f55cadbec0d9b4b06bdd1e079dd132ca, type: 2}
+  outerOneHanded:
+  - {fileID: 7400000, guid: be5ba0ec225e94699baf5996afe0b9dd, type: 2}
+  - {fileID: 7400000, guid: 55f392bc083b44af7ae5b6538b95b0d8, type: 2}
+  - {fileID: 7400000, guid: 9625790fd4cf54b27a609f36296efab8, type: 2}
+  - {fileID: 7400000, guid: 02f771f78693f4f4d8c27f8eb1feaddc, type: 2}
+  innerOneHanded:
+  - {fileID: 7400000, guid: 9e889ce8c91734693a742ac55b542057, type: 2}
+  - {fileID: 7400000, guid: 507a226ff1010475080b92cab4823f95, type: 2}
+  - {fileID: 7400000, guid: b8e355f5c42c34fb9af3be99ab5e1293, type: 2}
+  - {fileID: 7400000, guid: be0758cf170c9488d86a51663e977412, type: 2}
+  weaponSocket1: {fileID: 735172533}
+  weaponSocket2: {fileID: 702577857}
+  oneHandedEquipped1: 0
+  oneHandedEquipped2: 0
+  weaponSlot1: {fileID: 0}
+  weaponSlot2: {fileID: 0}
+  outerAnimations1: []
+  innerAnimations1: []
+  outerAnimations2: []
+  innerAnimations2: []
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}
 --- !u!95 &1796681686
 Animator:
   serializedVersion: 3
@@ -10967,50 +11056,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1796681688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1796681683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21febcea954cd4c66aeb8b43da3b8c23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  facingRight: 0
-  right: 1
-  equipmentTypes: 
-  defaultClips:
-  - {fileID: 7400000, guid: 5c679f23f0bf341a185e4db61782a980, type: 2}
-  - {fileID: 7400000, guid: 2ac3231203acd4843a6cf55e424ae2eb, type: 2}
-  - {fileID: 7400000, guid: d85b03f14a9464a7090fa160354a677b, type: 2}
-  - {fileID: 7400000, guid: 1f699bbb9b7604015b28bedc9c28e88d, type: 2}
-  outerNoWeapon:
-  - {fileID: 7400000, guid: 5c679f23f0bf341a185e4db61782a980, type: 2}
-  - {fileID: 7400000, guid: 2ac3231203acd4843a6cf55e424ae2eb, type: 2}
-  - {fileID: 7400000, guid: d85b03f14a9464a7090fa160354a677b, type: 2}
-  - {fileID: 7400000, guid: 1f699bbb9b7604015b28bedc9c28e88d, type: 2}
-  innerNoWeapon:
-  - {fileID: 7400000, guid: be1ab418831004c1e9a083639d8d2078, type: 2}
-  - {fileID: 7400000, guid: 140294ad7041b425d8df896a5e3511ec, type: 2}
-  - {fileID: 7400000, guid: ff60dc84f18964259b50579f07cf7040, type: 2}
-  - {fileID: 7400000, guid: f55cadbec0d9b4b06bdd1e079dd132ca, type: 2}
-  outerOneHanded:
-  - {fileID: 7400000, guid: be5ba0ec225e94699baf5996afe0b9dd, type: 2}
-  - {fileID: 7400000, guid: 55f392bc083b44af7ae5b6538b95b0d8, type: 2}
-  - {fileID: 7400000, guid: 9625790fd4cf54b27a609f36296efab8, type: 2}
-  - {fileID: 7400000, guid: 02f771f78693f4f4d8c27f8eb1feaddc, type: 2}
-  innerOneHanded:
-  - {fileID: 7400000, guid: 9e889ce8c91734693a742ac55b542057, type: 2}
-  - {fileID: 7400000, guid: 507a226ff1010475080b92cab4823f95, type: 2}
-  - {fileID: 7400000, guid: b8e355f5c42c34fb9af3be99ab5e1293, type: 2}
-  - {fileID: 7400000, guid: be0758cf170c9488d86a51663e977412, type: 2}
-  weaponSocket1: {fileID: 735172530}
-  weaponSocket2: {fileID: 702577857}
-  oneHandedEquipped1: 0
-  oneHandedEquipped2: 0
 --- !u!1 &1805894388
 GameObject:
   m_ObjectHideFlags: 0
@@ -11118,6 +11163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae75cebd37b74170a4d372ac073bce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  socketType: 0
   facingRight: 0
   right: 0
   equipmentTypes: 03000000
@@ -11126,6 +11172,22 @@ MonoBehaviour:
   - {fileID: 7400000, guid: f07c7bbca328c4772b1f5ff0b4b392a5, type: 2}
   - {fileID: 7400000, guid: 6d4c21f788e694e2ba5e0128da72604a, type: 2}
   - {fileID: 7400000, guid: 8d72383d6e61a497694a8bc5f3474d25, type: 2}
+  outerNoWeapon: []
+  innerNoWeapon: []
+  outerOneHanded: []
+  innerOneHanded: []
+  weaponSocket1: {fileID: 0}
+  weaponSocket2: {fileID: 0}
+  oneHandedEquipped1: 0
+  oneHandedEquipped2: 0
+  weaponSlot1: {fileID: 0}
+  weaponSlot2: {fileID: 0}
+  outerAnimations1: []
+  innerAnimations1: []
+  outerAnimations2: []
+  innerAnimations2: []
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}
 --- !u!95 &1809133533
 Animator:
   serializedVersion: 3
@@ -11586,7 +11648,6 @@ GameObject:
   - component: {fileID: 1925549876}
   - component: {fileID: 1925549875}
   - component: {fileID: 1925549877}
-  - component: {fileID: 1925549878}
   m_Layer: 11
   m_Name: Inner hand socket
   m_TagString: Player
@@ -11688,6 +11749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae75cebd37b74170a4d372ac073bce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  socketType: 1
   facingRight: 0
   right: 0
   equipmentTypes: 02000000
@@ -11696,22 +11758,6 @@ MonoBehaviour:
   - {fileID: 7400000, guid: d8f600ae4fb4246fd80b7414bad1edc9, type: 2}
   - {fileID: 7400000, guid: 9a4e201c4f2cc4b5980dd40a1c14e98d, type: 2}
   - {fileID: 7400000, guid: 762c3ce5d9be54b18b2478f5b61d82d8, type: 2}
---- !u!114 &1925549878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1925549873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21febcea954cd4c66aeb8b43da3b8c23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  facingRight: 0
-  right: 0
-  equipmentTypes: 
-  defaultClips: []
   outerNoWeapon:
   - {fileID: 7400000, guid: 3480ec046bbd6409c97a10be8b26184d, type: 2}
   - {fileID: 7400000, guid: 2b5eb30cb745740fbbf0c1f8e0122385, type: 2}
@@ -11732,10 +11778,18 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 0d11bdaee9d6c4d418bfa00453d35c35, type: 2}
   - {fileID: 7400000, guid: 8897d372df6b5442f9c751233ceec584, type: 2}
   - {fileID: 7400000, guid: db5301b896e7a4b60a0e4e762550b16a, type: 2}
-  weaponSocket1: {fileID: 735172530}
-  weaponSocket2: {fileID: 702577857}
+  weaponSocket1: {fileID: 0}
+  weaponSocket2: {fileID: 0}
   oneHandedEquipped1: 0
   oneHandedEquipped2: 0
+  weaponSlot1: {fileID: 0}
+  weaponSlot2: {fileID: 0}
+  outerAnimations1: []
+  innerAnimations1: []
+  outerAnimations2: []
+  innerAnimations2: []
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}
 --- !u!1 &1925929383
 GameObject:
   m_ObjectHideFlags: 0
@@ -11849,6 +11903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae75cebd37b74170a4d372ac073bce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  socketType: 0
   facingRight: 0
   right: 0
   equipmentTypes: 01000000
@@ -11857,6 +11912,22 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 011bb0c41088c47428d25c0ab94fb671, type: 2}
   - {fileID: 7400000, guid: d2b9404675efe47b09517a93ec1dad9c, type: 2}
   - {fileID: 7400000, guid: d45b3757d40a547a48bf1b38896aeef8, type: 2}
+  outerNoWeapon: []
+  innerNoWeapon: []
+  outerOneHanded: []
+  innerOneHanded: []
+  weaponSocket1: {fileID: 0}
+  weaponSocket2: {fileID: 0}
+  oneHandedEquipped1: 0
+  oneHandedEquipped2: 0
+  weaponSlot1: {fileID: 0}
+  weaponSlot2: {fileID: 0}
+  outerAnimations1: []
+  innerAnimations1: []
+  outerAnimations2: []
+  innerAnimations2: []
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}
 --- !u!1 &1927415486
 GameObject:
   m_ObjectHideFlags: 0
@@ -12619,6 +12690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae75cebd37b74170a4d372ac073bce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  socketType: 0
   facingRight: 0
   right: 0
   equipmentTypes: 00000000
@@ -12627,6 +12699,22 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 3244324c887ea4ab09bb77fed49a82d0, type: 2}
   - {fileID: 7400000, guid: 5722c706e85174c37af060bcf1d88a73, type: 2}
   - {fileID: 7400000, guid: 672fd3e336980440a836338331600532, type: 2}
+  outerNoWeapon: []
+  innerNoWeapon: []
+  outerOneHanded: []
+  innerOneHanded: []
+  weaponSocket1: {fileID: 0}
+  weaponSocket2: {fileID: 0}
+  oneHandedEquipped1: 0
+  oneHandedEquipped2: 0
+  weaponSlot1: {fileID: 0}
+  weaponSlot2: {fileID: 0}
+  outerAnimations1: []
+  innerAnimations1: []
+  outerAnimations2: []
+  innerAnimations2: []
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}
 --- !u!1 &2066956921
 GameObject:
   m_ObjectHideFlags: 0
@@ -13418,12 +13506,12 @@ MonoBehaviour:
   - {fileID: 960330519}
   - {fileID: 2027042730}
   - {fileID: 1757245658}
-  - {fileID: 1796681688}
-  - {fileID: 735172530}
+  - {fileID: 1796681685}
+  - {fileID: 735172533}
   - {fileID: 702577857}
   weaponsockets:
-  - {fileID: 735172530}
-  - {fileID: 702577857}
+  - {fileID: 0}
+  - {fileID: 0}
   jumpHeight: 20
   timeToJumpApex: 0.25
   startPos: {x: 0, y: 0, z: 0}

@@ -37,16 +37,19 @@ public class DroppedLoot: MonoBehaviour
     private bool isInRange;
   
 
-    private void OnValidate()
+    private void Awake()
     {
+
+
         if (inventory == null)
         {
             inventory = FindObjectOfType<Inventory>();
         }
 
-       
+        ID = MyDroppedLoot.ID;
     }
 
+  
 
     private void Start()
     {

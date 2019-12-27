@@ -205,12 +205,7 @@ public class Player : Character
             g.OnGround = grounded;
             g.FacingRight = facingRight;
         }
-		foreach (WeaponSocket w in weaponsockets)
-		{
-			w.Speed = Mathf.Abs(velocity.x);
-			w.OnGround = grounded;
-			w.FacingRight = facingRight;
-		}
+		
         
     }
 

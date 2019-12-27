@@ -22,14 +22,14 @@ public class Item : ScriptableObject, IRDSObject
     public event EventHandler rdsHit;
     public event ResultEventHandler rdsPostResultEvaluation;
 
-    private void OnValidate()
+    private void Awake()
     {
         string path = AssetDatabase.GetAssetPath(this);
         id = AssetDatabase.AssetPathToGUID(path);
     }
 
     public virtual void OnRDSPreResultEvaluation(EventArgs e)
-    {
+    { 
         if (rdsPreResultEvaluation != null) rdsPreResultEvaluation(this, e);
     }
 

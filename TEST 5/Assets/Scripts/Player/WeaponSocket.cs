@@ -188,7 +188,7 @@ public class WeaponSocket : GearSocket
         
 
 
-    }
+    }   
     private EquippableWeapon Weapon1Equipped()
     {
         if(weaponSlot1.Item != null)
@@ -218,5 +218,10 @@ public class WeaponSocket : GearSocket
             //Debug.Log("nothing Equipped");
             return null;
         }
+    }
+
+    public override void UnEquip(AnimationClip[] animationClips)
+    {
+        animationClips = null; 
     }
 }

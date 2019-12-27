@@ -10,6 +10,8 @@ public class LootTables : MonoBehaviour
 
     //sub tables
     private RDSTable genericEnemyTable = new RDSTable();
+    [SerializeField]
+    private List<Item> genericEnemyItems;
 
     //sub tables list
     private List<RDSTable> subTables;
@@ -35,9 +37,17 @@ public class LootTables : MonoBehaviour
     #region METHODS
     private void Awake()
     {
+        if(genericEnemyItems == null)
+        {
+            genericEnemyItems = new List<Item>();
+        }
+       
+
         //subtable generic, int 0
-        genericEnemyTable.AddEntry(new ConsumableItem("Mana Potion", ConsumableType.ManaPotion), 10, false, false, true);
-        genericEnemyTable.AddEntry(new ConsumableItem("Health Potion", ConsumableType.HealthPotion), 20, false, true, true);
+        /*genericEnemyTable.AddEntry(new ConsumableItem("Mana Potion", ConsumableType.ManaPotion), 10, false, false, true);
+        genericEnemyTable.AddEntry(new ConsumableItem("Health Potion", ConsumableType.HealthPotion), 20, false, true, true);*/
+        genericEnemyTable.AddEntry(genericEnemyItems[0], 10, false, false, true);
+        genericEnemyTable.AddEntry(genericEnemyItems[1], 20, false, true, true);
 
         //Remove dead enemies from enemies at start
         enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
@@ -63,13 +73,14 @@ public class LootTables : MonoBehaviour
     {
         enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
         List<GameObject> tmpEnemies = new List<GameObject>(enemies); 
-        for (int i = 0; i < enemies.Count; i++)
+        for (int i = enemies.Count-1; i >= 0; i--)
         {
             if (enemies[i].GetComponent<Enemy>().IsDead)
             {
-
+                //retrieving int that determines what loottable to use
                 int lootTable = enemies[i].GetComponent<Enemy>().LootLevel;
 
+                //setting amount of items to drop
                 subTables[lootTable].rdsCount = 2;
 
                 if (subTables[lootTable].rdsCount > 0)
@@ -89,7 +100,7 @@ public class LootTables : MonoBehaviour
                 lootDropped = false;
                 tmpEnemies.RemoveAt(i);
                 
-               // loot = new List<Item>();
+                //loot = new List<Item>();
                 //return;
             }
             
@@ -113,14 +124,42 @@ public class LootTables : MonoBehaviour
 
         tmp = new List<Item>(loot);
 
-        int count = 0;
-        foreach (Item item in loot)
+        #region
+        /* foreach (Item item in loot)
+         {
+             Item current = item;
+             Instantiate(current);
+             lootForDrop.GetComponent<DroppedLoot>().MyDroppedLoot = current;
+
+
+
+             lootForDrop.GetComponent<SpriteRenderer>().enabled = true;
+             lootForDrop.GetComponent<DroppedLoot>().Dropped = true;
+             lootForDrop.GetComponent<DroppedLoot>().Layer++;
+             if (lootForDrop.GetComponent<DroppedLoot>().Layer >= 1000)
+             {
+                 lootForDrop.GetComponent<DroppedLoot>().Layer = 0;
+             }
+
+             GameObject nextLoot = Instantiate(lootForDrop, new Vector3((enemy.transform.position.x + Random.Range(-20.0f, 20.0f)), transform.position.y, transform.position.z), Quaternion.identity);
+             nextLoot.GetComponent<SpriteRenderer>().sortingOrder = lootForDrop.GetComponent<DroppedLoot>().Layer;
+             nextLoot.name = nextLoot.GetComponent<DroppedLoot>().MyDroppedLoot.ItemName;
+             nextLoot.SetActive(true);
+
+             tmp.RemoveAt(count);
+
+             count++;
+
+         }*/
+#endregion
+        for (int i = loot.Count-1; i >= 0; i--)
         {
-            Item current = item;
+            tmp.RemoveAt(i);
+            Item current = loot[i];
             Instantiate(current);
             lootForDrop.GetComponent<DroppedLoot>().MyDroppedLoot = current;
 
-            
+
 
             lootForDrop.GetComponent<SpriteRenderer>().enabled = true;
             lootForDrop.GetComponent<DroppedLoot>().Dropped = true;
@@ -129,23 +168,20 @@ public class LootTables : MonoBehaviour
             {
                 lootForDrop.GetComponent<DroppedLoot>().Layer = 0;
             }
-            
+
             GameObject nextLoot = Instantiate(lootForDrop, new Vector3((enemy.transform.position.x + Random.Range(-20.0f, 20.0f)), transform.position.y, transform.position.z), Quaternion.identity);
             nextLoot.GetComponent<SpriteRenderer>().sortingOrder = lootForDrop.GetComponent<DroppedLoot>().Layer;
             nextLoot.name = nextLoot.GetComponent<DroppedLoot>().MyDroppedLoot.ItemName;
             nextLoot.SetActive(true);
-            
-            tmp.RemoveAt(count);
-            
-            count++;
 
-
-
+            //loot.Remove(loot[i]);
         }
-        loot.Clear();
-        loot = new List<Item>(tmp);
-        return; 
 
+        loot.Clear();
+        
+        loot = new List<Item>(tmp);
+
+        return; 
         
     }
     #endregion
