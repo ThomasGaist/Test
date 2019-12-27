@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class LootTables : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class LootTables : MonoBehaviour
     //Loot list
     [SerializeField]
     private List<Item> loot;
+
+    //[SerializeField]
+   // private Item[] lootArray;
+
     [SerializeField]
     private List<Item> tmp;
 
@@ -65,7 +70,7 @@ public class LootTables : MonoBehaviour
         };
 
         loot = new List<Item>();
-        tmp = new List<Item>(loot);
+       
 
     }
 
@@ -83,12 +88,18 @@ public class LootTables : MonoBehaviour
                 //setting amount of items to drop
                 subTables[lootTable].rdsCount = 2;
 
+                //lootArray = new Item[subTables[lootTable].rdsCount];
+
                 if (subTables[lootTable].rdsCount > 0)
                 {
                     foreach (Item item in subTables[lootTable].rdsResult)
                     {
-                        loot.Add(item);
+                        loot.Add(item);  
                     }
+                    /*for (int x = 0; x < subTables[lootTable].rdsCount; x++)
+                    {
+                        lootArray[x] = loot[i];
+                    }*/
                 }
                 lootDropped = true;
 
@@ -98,8 +109,8 @@ public class LootTables : MonoBehaviour
                 }
                 
                 lootDropped = false;
-                tmpEnemies.RemoveAt(i);
-                
+                enemies.Remove(enemies[i]);
+                return; 
                 //loot = new List<Item>();
                 //return;
             }
@@ -107,7 +118,7 @@ public class LootTables : MonoBehaviour
             
 
         }
-        enemies = new List<GameObject>(tmpEnemies);
+       // enemies = new List<GameObject>(tmpEnemies);
 
         //tmp = new List<Item>(loot);
         loot.Clear();
@@ -125,64 +136,68 @@ public class LootTables : MonoBehaviour
         tmp = new List<Item>(loot);
 
         #region
-        /* foreach (Item item in loot)
+        
+        int count = 0;
+
+         foreach (Item item in loot)
          {
-             Item current = item;
-             Instantiate(current);
-             lootForDrop.GetComponent<DroppedLoot>().MyDroppedLoot = current;
-
-
-
-             lootForDrop.GetComponent<SpriteRenderer>().enabled = true;
-             lootForDrop.GetComponent<DroppedLoot>().Dropped = true;
-             lootForDrop.GetComponent<DroppedLoot>().Layer++;
-             if (lootForDrop.GetComponent<DroppedLoot>().Layer >= 1000)
-             {
-                 lootForDrop.GetComponent<DroppedLoot>().Layer = 0;
-             }
-
-             GameObject nextLoot = Instantiate(lootForDrop, new Vector3((enemy.transform.position.x + Random.Range(-20.0f, 20.0f)), transform.position.y, transform.position.z), Quaternion.identity);
-             nextLoot.GetComponent<SpriteRenderer>().sortingOrder = lootForDrop.GetComponent<DroppedLoot>().Layer;
-             nextLoot.name = nextLoot.GetComponent<DroppedLoot>().MyDroppedLoot.ItemName;
-             nextLoot.SetActive(true);
-
+            // Item current = item;
+             //Instantiate(current);
+             DroppedLoot(item, enemy);
              tmp.RemoveAt(count);
 
              count++;
 
-         }*/
-#endregion
-        for (int i = loot.Count-1; i >= 0; i--)
+         }
+        loot = new List<Item>(tmp);
+        //loot.Clear();
+
+        return;
+        
+        #endregion
+
+        #region
+        /*
+        for (int i = loot.Count-1; i > -1; i--)
         {
-            tmp.RemoveAt(i);
-            Item current = loot[i];
-            Instantiate(current);
-            lootForDrop.GetComponent<DroppedLoot>().MyDroppedLoot = current;
-
-
-
-            lootForDrop.GetComponent<SpriteRenderer>().enabled = true;
-            lootForDrop.GetComponent<DroppedLoot>().Dropped = true;
-            lootForDrop.GetComponent<DroppedLoot>().Layer++;
-            if (lootForDrop.GetComponent<DroppedLoot>().Layer >= 1000)
-            {
-                lootForDrop.GetComponent<DroppedLoot>().Layer = 0;
-            }
-
-            GameObject nextLoot = Instantiate(lootForDrop, new Vector3((enemy.transform.position.x + Random.Range(-20.0f, 20.0f)), transform.position.y, transform.position.z), Quaternion.identity);
-            nextLoot.GetComponent<SpriteRenderer>().sortingOrder = lootForDrop.GetComponent<DroppedLoot>().Layer;
-            nextLoot.name = nextLoot.GetComponent<DroppedLoot>().MyDroppedLoot.ItemName;
-            nextLoot.SetActive(true);
-
-            //loot.Remove(loot[i]);
+            DroppedLoot(loot[i], enemy);
+            loot[i] = null;
         }
+        return;
+        /*
 
+        foreach (Item item in lootArray)
+        {
+            DroppedLoot(item, enemy);
+        }
         loot.Clear();
         
-        loot = new List<Item>(tmp);
-
-        return; 
         
+        //loot = new List<Item>(tmp);
+
+        return;
+        */
+        #endregion
+
     }
     #endregion
+
+    public void DroppedLoot(Item current, GameObject enemy)
+    {
+        Instantiate(current);
+        lootForDrop.GetComponent<DroppedLoot>().MyDroppedLoot = current;
+        lootForDrop.GetComponent<SpriteRenderer>().enabled = true;
+        lootForDrop.GetComponent<DroppedLoot>().Dropped = true;
+        lootForDrop.GetComponent<DroppedLoot>().Layer++;
+        if (lootForDrop.GetComponent<DroppedLoot>().Layer >= 1000)
+        {
+            lootForDrop.GetComponent<DroppedLoot>().Layer = 0;
+        }
+
+        GameObject nextLoot = Instantiate(lootForDrop, new Vector3((enemy.transform.position.x + Random.Range(-20.0f, 20.0f)), transform.position.y, transform.position.z), Quaternion.identity);
+        nextLoot.GetComponent<SpriteRenderer>().sortingOrder = lootForDrop.GetComponent<DroppedLoot>().Layer;
+        nextLoot.name = nextLoot.GetComponent<DroppedLoot>().MyDroppedLoot.ItemName;
+        nextLoot.SetActive(true);
+        //lootForDrop.SetActive(false);
+    }
 }

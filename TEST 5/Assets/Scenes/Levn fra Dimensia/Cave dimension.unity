@@ -6695,7 +6695,7 @@ MonoBehaviour:
   damageSources:
   - Cane
   attack: 0
-  thisLoot: {fileID: 11400000, guid: 6d34866bc821e4b298b05ae81cb9083b, type: 2}
+  thisLoot: {fileID: 0}
   lootForDrop: {fileID: 801172169}
   movementSpeed: 80
   chaseMultiplier: 1.5
@@ -7617,6 +7617,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: edb484a003bb34549a9bb2afd6d5b638, type: 2}
   - {fileID: 11400000, guid: 1525b40a2d14d442988f6f45c9e4af5e, type: 2}
   loot: []
+  lootArray: []
   tmp: []
   enemies: []
   lootForDrop: {fileID: 801172169}
