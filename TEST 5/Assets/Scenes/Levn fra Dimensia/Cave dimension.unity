@@ -7616,9 +7616,9 @@ MonoBehaviour:
   genericEnemyItems:
   - {fileID: 11400000, guid: edb484a003bb34549a9bb2afd6d5b638, type: 2}
   - {fileID: 11400000, guid: 1525b40a2d14d442988f6f45c9e4af5e, type: 2}
+  - {fileID: 11400000, guid: 79256157ec9f444f2b931d9ecef2f5f3, type: 2}
+  - {fileID: 11400000, guid: edb484a003bb34549a9bb2afd6d5b638, type: 2}
   loot: []
-  lootArray: []
-  tmp: []
   enemies: []
   lootForDrop: {fileID: 801172169}
 --- !u!4 &1175731928

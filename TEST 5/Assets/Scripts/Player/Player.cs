@@ -28,12 +28,15 @@ public class Player : Character
 
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
     
-    //Equipmentkode
+    //Equipment code
     [SerializeField]
     private GearSocket[] gearsockets;
     [SerializeField]
     private WeaponSocket[] weaponsockets;
     private bool flipped;
+
+    //Player Level
+    private int level = 10;
 
 	public float jumpHeight = 4;
     public float timeToJumpApex = .4f;
@@ -82,6 +85,7 @@ public class Player : Character
 
     public float CurrentSpeed { get => currentSpeed;}
     public bool Flipped { get => flipped;}
+    public int MyPlayerLevel { get => level; set => level = value; }
 
     void Start()
     {
@@ -96,7 +100,6 @@ public class Player : Character
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
 
         startPos = new Vector3(-2.11f, -0.87f, 4);
-
        
        // flip = spriteRenderer.flipX;
 
