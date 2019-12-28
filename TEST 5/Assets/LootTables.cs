@@ -17,15 +17,10 @@ public class LootTables : MonoBehaviour
     //sub tables list
     private List<RDSTable> subTables;
 
-    //Loot list
+    //Loot array
     [SerializeField]
-    private List<Item> loot;
+    private Item[] loot;
 
-    //[SerializeField]
-   // private Item[] lootArray;
-
-    [SerializeField]
-    private List<Item> tmp;
 
     //List of Live Enemies
     [SerializeField]
@@ -36,17 +31,20 @@ public class LootTables : MonoBehaviour
 
     private bool lootDropped = false;
 
+    private bool enemyDeath;
+
+    
     public bool MyLootDropped { get => lootDropped;}
     #endregion
 
     #region METHODS
     private void Awake()
     {
-        if(genericEnemyItems == null)
+        if (genericEnemyItems == null)
         {
             genericEnemyItems = new List<Item>();
         }
-       
+
 
         //subtable generic, int 0
         /*genericEnemyTable.AddEntry(new ConsumableItem("Mana Potion", ConsumableType.ManaPotion), 10, false, false, true);
@@ -69,10 +67,10 @@ public class LootTables : MonoBehaviour
             genericEnemyTable,
         };
 
-        loot = new List<Item>();
-       
+
 
     }
+
 
     private void FixedUpdate()
     {
@@ -88,29 +86,34 @@ public class LootTables : MonoBehaviour
                 //setting amount of items to drop
                 subTables[lootTable].rdsCount = 2;
 
-                //lootArray = new Item[subTables[lootTable].rdsCount];
+                //extract enemy transform for DroppedLoot method
+                Transform enemyPos = enemies[i].transform;
 
+                
                 if (subTables[lootTable].rdsCount > 0)
                 {
-                    foreach (Item item in subTables[lootTable].rdsResult)
+                    List<IRDSObject> loot2;
+                    loot2 = new List<IRDSObject>(subTables[lootTable].rdsResult);
+                    loot = new Item[subTables[lootTable].rdsCount];
+                    for (int x = 0; x < 2; x++)
                     {
-                        loot.Add(item);  
+                        loot[x]=loot2[x] as Item;
+                        
                     }
-                    /*for (int x = 0; x < subTables[lootTable].rdsCount; x++)
-                    {
-                        lootArray[x] = loot[i];
-                    }*/
                 }
                 lootDropped = true;
 
                 if(loot!= null)
                 {
-                    SpawnLoot(enemies[i]);
+                    SpawnLoot(enemyPos);
+                    return;
                 }
-                
                 lootDropped = false;
+
+                //remove enemy from list
                 enemies.Remove(enemies[i]);
-                return; 
+
+                break; 
                 //loot = new List<Item>();
                 //return;
             }
@@ -121,68 +124,39 @@ public class LootTables : MonoBehaviour
        // enemies = new List<GameObject>(tmpEnemies);
 
         //tmp = new List<Item>(loot);
-        loot.Clear();
-        tmp = new List<Item>(loot);
+       // loot.Clear();
+        //tmp = new List<Item>(loot);
     }
 
     #endregion
 
     #region SUBTABLE generic
 
-    public void SpawnLoot(GameObject enemy)
+    public void SpawnLoot(Transform enemypos)
     {
         lootForDrop.GetComponent<SpriteRenderer>().enabled = false;
 
-        tmp = new List<Item>(loot);
 
         #region
-        
-        int count = 0;
-
-         foreach (Item item in loot)
+        foreach (Item item in loot)
          {
-            // Item current = item;
-             //Instantiate(current);
-             DroppedLoot(item, enemy);
-             tmp.RemoveAt(count);
-
-             count++;
-
+            //Debug.Log(item);
+            DroppedLoot(item, enemypos);
          }
-        loot = new List<Item>(tmp);
-        //loot.Clear();
 
+        for (int i = 0; i < loot.Length; i++)
+        {
+            loot[i] = null; 
+        }
         return;
         
         #endregion
 
-        #region
-        /*
-        for (int i = loot.Count-1; i > -1; i--)
-        {
-            DroppedLoot(loot[i], enemy);
-            loot[i] = null;
-        }
-        return;
-        /*
-
-        foreach (Item item in lootArray)
-        {
-            DroppedLoot(item, enemy);
-        }
-        loot.Clear();
-        
-        
-        //loot = new List<Item>(tmp);
-
-        return;
-        */
-        #endregion
 
     }
     #endregion
 
-    public void DroppedLoot(Item current, GameObject enemy)
+    public void DroppedLoot(Item current, Transform enemypos)
     {
         Instantiate(current);
         lootForDrop.GetComponent<DroppedLoot>().MyDroppedLoot = current;
@@ -194,10 +168,11 @@ public class LootTables : MonoBehaviour
             lootForDrop.GetComponent<DroppedLoot>().Layer = 0;
         }
 
-        GameObject nextLoot = Instantiate(lootForDrop, new Vector3((enemy.transform.position.x + Random.Range(-20.0f, 20.0f)), transform.position.y, transform.position.z), Quaternion.identity);
+        GameObject nextLoot = Instantiate(lootForDrop, new Vector3((enemypos.position.x + Random.Range(-20.0f, 20.0f)), transform.position.y, transform.position.z), Quaternion.identity);
         nextLoot.GetComponent<SpriteRenderer>().sortingOrder = lootForDrop.GetComponent<DroppedLoot>().Layer;
         nextLoot.name = nextLoot.GetComponent<DroppedLoot>().MyDroppedLoot.ItemName;
         nextLoot.SetActive(true);
         //lootForDrop.SetActive(false);
     }
 }
+
