@@ -31,8 +31,8 @@ public class Player : Character
     //Equipment code
     [SerializeField]
     private GearSocket[] gearsockets;
-    [SerializeField]
-    private WeaponSocket[] weaponsockets;
+    //[SerializeField]
+    //private WeaponSocket[] weaponsockets;
     private bool flipped;
 
     //Player Level

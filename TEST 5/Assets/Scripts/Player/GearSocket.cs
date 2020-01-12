@@ -161,6 +161,7 @@ public class GearSocket : MonoBehaviour
 
 
             weapon1 = Weapon1Equipped();
+            weapon2 = Weapon2Equipped();
 
             player = GetComponentInParent<Player>();
 
@@ -172,9 +173,13 @@ public class GearSocket : MonoBehaviour
             {
                 UnEquipWeapon();
             }
-            else
+            else if(Weapon1Equipped() != null)
             {
                 AddAnimations(weapon1, outerAnimations1, innerAnimations1);
+            }
+            else if (Weapon2Equipped() != null)
+            {
+                AddAnimations(weapon2, outerAnimations2, innerAnimations2);
             }
         }
     }
@@ -522,7 +527,7 @@ public class GearSocket : MonoBehaviour
             EquipWeapon(outerAnimations1, innerAnimations1, outerAnimations2, innerAnimations2);
         }
 
-        else if (weapon2 != null)
+        if (weapon2 != null)
         {
             AddAnimations(weapon2, outerAnimations2, innerAnimations2);
             EquipWeapon(outerAnimations1, innerAnimations1, outerAnimations2, innerAnimations2);

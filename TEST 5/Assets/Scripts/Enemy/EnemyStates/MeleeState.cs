@@ -26,7 +26,7 @@ public class MeleeState : IEnemyState
         {
             enemy.Chase();
         }*/
-        Debug.Log("Combat");
+        //Debug.Log("Combat");
 
 
         if(enemy.Target != null && !enemy.InMeleeRange && !enemy.Animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))

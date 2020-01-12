@@ -53,9 +53,9 @@ public class LootTables : MonoBehaviour
 
         //items in arrays
         genericEnemyTable.AddEntry(genericEnemyItems[0], 10, false, false, true);
-        genericEnemyTable.AddEntry(genericEnemyItems[1], 20, false, true, true);
-        genericEnemyTable.AddEntry(genericEnemyItems[2], 40, false, true, true);
-        genericEnemyTable.AddEntry(genericEnemyItems[3], 20, false, true, true);
+        genericEnemyTable.AddEntry(genericEnemyItems[1], 20, false, false, true);
+        genericEnemyTable.AddEntry(genericEnemyItems[2], 80, false, false, true);
+        genericEnemyTable.AddEntry(genericEnemyItems[3], 20, false, false, true);
         //Null entry for probability for no drop
         genericEnemyTable.AddEntry(new RDSNullValue(80), 80, false, false, true);
 
@@ -109,7 +109,7 @@ public class LootTables : MonoBehaviour
                         if(loot2[x] != null)
                         { 
                             Item item = loot2[x] as Item;
-                            loot3.Add(item); //= loot2[x] as Item;
+                            loot3.Add(item); //= loot2[x] as Item; 
                         }
 
                     }
@@ -138,7 +138,7 @@ public class LootTables : MonoBehaviour
                 break;
 
             }
-
+           
         }
  
       

@@ -34,6 +34,12 @@ public class Enemy : Character
 
     #endregion
 
+    #region EVENTS
+
+
+
+    #endregion
+
 
     [SerializeField]
     public float meleeRange = 3f; 
@@ -199,38 +205,41 @@ public class Enemy : Character
         // MakeLoot();
 
         //Will only use this until good death animation. 
-        Destroy(gameObject);
-        Destroy(transform.parent.gameObject);
+        //Destroy(gameObject);
+        //Destroy(transform.parent.gameObject);
 
-        //transparent on Death()
-      
+        // Fix spawning problem
+        Animator.SetTrigger("Death");
+        this.enabled = false;
+        this.tag = "DeadEnemy";
     }
 
-/*
-    //Loot method
-    private void MakeLoot()
-    {
-        if(ThisLoot != null)
+    #region UNUSED CODE
+    /*
+        //Loot method
+        private void MakeLoot()
         {
-            lootForDrop.GetComponent<SpriteRenderer>().enabled = false;
-            
-            Item current = ThisLoot.lootDrop();
-            lootForDrop.GetComponent<DroppedLoot>().MyDroppedLoot = current;
-            if(current != null)
+            if(ThisLoot != null)
             {
-                lootForDrop.GetComponent<SpriteRenderer>().enabled = true;
-                lootForDrop.GetComponent<DroppedLoot>().Dropped = true;
-                lootForDrop.GetComponent<DroppedLoot>().Layer++;
-                if(lootForDrop.GetComponent<DroppedLoot>().Layer >= 1000)
-                {
-                    lootForDrop.GetComponent<DroppedLoot>().Layer = 0;
-                }
-                GameObject nextLoot = Instantiate(lootForDrop, new Vector3((transform.position.x + Random.Range(-20.0f,20.0f)), transform.position.y, transform.position.z), Quaternion.identity);
-                nextLoot.GetComponent<SpriteRenderer>().sortingOrder = lootForDrop.GetComponent<DroppedLoot>().Layer;
-                nextLoot.active = true;
+                lootForDrop.GetComponent<SpriteRenderer>().enabled = false;
 
+                Item current = ThisLoot.lootDrop();
+                lootForDrop.GetComponent<DroppedLoot>().MyDroppedLoot = current;
+                if(current != null)
+                {
+                    lootForDrop.GetComponent<SpriteRenderer>().enabled = true;
+                    lootForDrop.GetComponent<DroppedLoot>().Dropped = true;
+                    lootForDrop.GetComponent<DroppedLoot>().Layer++;
+                    if(lootForDrop.GetComponent<DroppedLoot>().Layer >= 1000)
+                    {
+                        lootForDrop.GetComponent<DroppedLoot>().Layer = 0;
+                    }
+                    GameObject nextLoot = Instantiate(lootForDrop, new Vector3((transform.position.x + Random.Range(-20.0f,20.0f)), transform.position.y, transform.position.z), Quaternion.identity);
+                    nextLoot.GetComponent<SpriteRenderer>().sortingOrder = lootForDrop.GetComponent<DroppedLoot>().Layer;
+                    nextLoot.active = true;
+
+                }
             }
-        }
-    }*/
-    
+        }*/
+    #endregion
 }

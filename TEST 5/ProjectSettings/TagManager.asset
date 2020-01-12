@@ -4,13 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Stairs
   - Enemy
   - PatrolPoint
   - Weapon
-  - Cane
   - EnemyMelee
   - Loot
+  - DeadEnemy
   layers:
   - Default
   - TransparentFX
@@ -53,6 +52,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 4102274905
+    locked: 0
+  - name: Enemy
+    uniqueID: 4199867997
     locked: 0
   - name: Loot
     uniqueID: 1841610459
