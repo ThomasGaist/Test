@@ -31,8 +31,7 @@ public class Player : Character
     //Equipment code
     [SerializeField]
     private GearSocket[] gearsockets;
-    //[SerializeField]
-    //private WeaponSocket[] weaponsockets;
+    
     private bool flipped;
 
     //Player Level
@@ -87,6 +86,9 @@ public class Player : Character
     public bool Flipped { get => flipped;}
     public int MyPlayerLevel { get => level; set => level = value; }
 
+    //EVENTS
+    private GameEvents eventsystem; 
+
     void Start()
     {
         controller = GetComponent<Controller2D>();
@@ -100,8 +102,10 @@ public class Player : Character
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
 
         startPos = new Vector3(-2.11f, -0.87f, 4);
+
+        //EVENTS
        
-       // flip = spriteRenderer.flipX;
+
 
     }
     // print("Gravity:" + gravity + "Jump Velocity" + jumpVelocity);
@@ -109,9 +113,11 @@ public class Player : Character
     void Update()
     {
 
-        
-        
 
+    }
+
+    private void FixedUpdate()
+    {
         if (!TakingDamage && !IsDead)
         {
             controller.Move(velocity * Time.deltaTime);
@@ -122,24 +128,19 @@ public class Player : Character
             HandleInput();
         }
 
-        if(!TakingDamage && !IsDead)
-        {
-            if(transform.position.y <= -700f)
-            {
-                Death();
-            }
-        }
-
-    }
-
-    private void FixedUpdate()
-    {
-
         if (!TakingDamage && !IsDead)
         {
             HandleAttacks();
             //HandleMovement();
             ResetValues();
+        }
+
+        if (!TakingDamage && !IsDead)
+        {
+            if (transform.position.y <= -700f)
+            {
+                Death();
+            }
         }
     }
 

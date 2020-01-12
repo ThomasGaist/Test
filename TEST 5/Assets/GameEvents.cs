@@ -18,6 +18,7 @@ public class GameEvents : MonoBehaviour
     #region ENEMY EVENT
     public event Action onEnemyDeath;
 
+    //event for loot generation at enemy death
     public void EnemyDeath()
     {
         if(onEnemyDeath!= null)
@@ -29,6 +30,16 @@ public class GameEvents : MonoBehaviour
     #endregion
 
     #region CHARACTER ANIMATIONS
+
+    public event Action onItemEquipped;
+
+    public void ItemEquipped()
+    {
+        if(onItemEquipped != null)
+        {
+            onItemEquipped();
+        }
+    }
 
     #endregion
 

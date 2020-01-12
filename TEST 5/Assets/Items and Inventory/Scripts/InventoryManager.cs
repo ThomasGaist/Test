@@ -23,7 +23,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance { get; set; }
    
 
-    private void OnValidate()
+    private void Start()
     {
         if(itemToolTip == null)
         {
@@ -80,6 +80,7 @@ public class InventoryManager : MonoBehaviour
         if(equippableItem != null)
         {
             Equip(equippableItem);
+            GameEvents.current.ItemEquipped();
         }
     }
     private void Unequip(ItemSlot itemSlot)

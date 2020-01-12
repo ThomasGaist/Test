@@ -22,14 +22,14 @@ public class GearSocket : MonoBehaviour
     protected bool right;
 
     [SerializeField]
-    private EquipmentType[] equipmentTypes; 
+    private EquipmentType[] equipmentTypes;
     [SerializeField]
     private AnimationClip[] defaultClips;
 
     private int animationArraySize;
 
     public Animator MyAnimator { get; set; }
-    
+
     protected SpriteRenderer spriteRenderer;
 
     private Animator parentAnimator;
@@ -47,8 +47,8 @@ public class GearSocket : MonoBehaviour
     public bool FacingRight { get => facingRight; set => facingRight = value; }
 
     [SerializeField]
-    public int AnimationArraySize { get => animationArraySize;}
-    public AnimationClip[] DefaultClips { get => defaultClips;}
+    public int AnimationArraySize { get => animationArraySize; }
+    public AnimationClip[] DefaultClips { get => defaultClips; }
 
     #region ArmHand Variables
 
@@ -81,14 +81,14 @@ public class GearSocket : MonoBehaviour
     [SerializeField]
     private EquipmentSlot weaponSlot2;
 
-   [SerializeField]
+    [SerializeField]
     AnimationClip[] outerAnimations1;
-   [SerializeField]
+    [SerializeField]
     AnimationClip[] innerAnimations1;
 
-   [SerializeField]
+    [SerializeField]
     AnimationClip[] outerAnimations2;
-   [SerializeField]
+    [SerializeField]
     AnimationClip[] innerAnimations2;
 
     [SerializeField]
@@ -102,10 +102,19 @@ public class GearSocket : MonoBehaviour
 
     #endregion
 
+    #region EVENTS
+    private GameEvents eventsystem;
+
+    #endregion
+
     public virtual void Awake()
     {
+        //EVENTS
+        eventsystem = GameEvents.current;
+        eventsystem.onItemEquipped += EquipItems;
 
-        // animationArraySize = defaultClips.Length;
+
+        //amount of overall character animations
         animationArraySize = 4;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -173,7 +182,7 @@ public class GearSocket : MonoBehaviour
             {
                 UnEquipWeapon();
             }
-            else if(Weapon1Equipped() != null)
+            else if (Weapon1Equipped() != null)
             {
                 AddAnimations(weapon1, outerAnimations1, innerAnimations1);
             }
@@ -187,12 +196,16 @@ public class GearSocket : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     private void Update()
+    { }
+
+    private void EquipItems()
     {
+
         if (socketType == SocketType.Default)
         {
             UnEquip(DefaultClips);
@@ -540,4 +553,8 @@ public class GearSocket : MonoBehaviour
 
     }
     #endregion
+    private void OnDestroy()
+    {
+        eventsystem.onItemEquipped -= EquipItems;
+    }
 }

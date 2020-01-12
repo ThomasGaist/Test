@@ -8,7 +8,7 @@ public class StatPanel : MonoBehaviour
 
     private CharacterStat[] stats;
 
-    private void OnValidate()
+    private void Awake() //alternatively OnValidate if needed
     {
         statDisplays = GetComponentsInChildren<StatDisplay>();
         UpdateStatNames();
