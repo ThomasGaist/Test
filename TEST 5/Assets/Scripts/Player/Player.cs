@@ -65,7 +65,11 @@ public class Player : Character
 
     //ATTACK VARIABLES
     private bool attack;
+    [SerializeField]
     private float attackDamage;
+
+    [SerializeField]
+    public KeyCode attackKey = KeyCode.F;
 
     //COMPONENTS
     Controller2D controller;
@@ -246,7 +250,7 @@ public class Player : Character
 
     private void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(attackKey)) 
         {
             eventsystem.PlayerAttack();
             attack = true;

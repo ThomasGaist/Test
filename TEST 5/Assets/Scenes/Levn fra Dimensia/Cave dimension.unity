@@ -720,7 +720,7 @@ GameObject:
   - component: {fileID: 111372099}
   - component: {fileID: 111372100}
   - component: {fileID: 111372101}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: Hurtbox
   m_TagString: PlayerHurtBox
   m_Icon: {fileID: 0}
@@ -735,7 +735,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111372098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -12, y: -4.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1386515776}
@@ -748,13 +748,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111372098}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -7.9337807, y: -4.2605133}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -765,7 +765,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10.077187, y: 22.075104}
   m_EdgeRadius: 0
 --- !u!114 &111372101
 MonoBehaviour:
@@ -779,6 +779,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b74b5d34e33c4558a533db2a868ff63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startTimeBtwAttack: 0.005
+  attackPosition: {fileID: 111372099}
+  attackRange: 10.5
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!1 &114951684
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,7 +832,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.23
+  m_Intensity: 0.76
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 0000000041c841c1bb95287359bf83f4a9a4d5c5dbbec46d5de654fa
   m_LightCookieSprite: {fileID: 0}
@@ -2245,6 +2251,7 @@ MonoBehaviour:
   lootForDrop: {fileID: 801172169}
   movementSpeed: 90
   chaseMultiplier: 1.2
+  hit: 0
   maxHealth: 0
   meleeRange: 40
 --- !u!114 &307337443
@@ -5992,7 +5999,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813831227}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2676c27f508924cf580a87d249a196ac, type: 3}
   m_Name: 
@@ -7303,6 +7310,7 @@ MonoBehaviour:
   lootForDrop: {fileID: 801172169}
   movementSpeed: 80
   chaseMultiplier: 1.5
+  hit: 0
   maxHealth: 0
   meleeRange: 2
 --- !u!114 &989195560
@@ -7765,7 +7773,8 @@ MonoBehaviour:
   lootForDrop: {fileID: 801172169}
   movementSpeed: 90
   chaseMultiplier: 1.2
-  maxHealth: 60
+  hit: 0
+  maxHealth: 30
   meleeRange: 40
 --- !u!114 &1054273578
 MonoBehaviour:
@@ -14122,6 +14131,7 @@ MonoBehaviour:
   lootForDrop: {fileID: 801172169}
   movementSpeed: 80
   chaseMultiplier: 1.5
+  hit: 0
   maxHealth: 0
   meleeRange: 2
 --- !u!95 &2088816815
@@ -14496,7 +14506,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8666341819891921791}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -97.12372, y: -146.18127, z: -0.48754883}
+  m_LocalPosition: {x: -95, y: -156.6, z: -0.48754883}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1386515776}
@@ -14582,16 +14592,16 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1932039611
   m_SortingLayer: 5
-  m_SortingOrder: 200
-  m_Sprite: {fileID: 21300000, guid: b464d5c1937754eaab4c0303b21ab0df, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_SortingOrder: 235
+  m_Sprite: {fileID: 21300000, guid: 883057a2988f04fbd970385db6d4fe7b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 85.333336, y: 64.833336}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &8666341819891921788
@@ -14608,8 +14618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 20
   SwordCollider: {fileID: 0}
-  damageSources:
-  - EnemyMelee
+  damageSources: []
   attack: 0
   jumpKey: 32
   gearsockets:
@@ -14631,6 +14640,8 @@ MonoBehaviour:
   immortalTime: 2
   accelerationTimeGrounded: 0.001
   moveSpeed: 80.6
+  attackDamage: 10
+  attackKey: 102
 --- !u!114 &8666341819891921789
 MonoBehaviour:
   m_ObjectHideFlags: 0

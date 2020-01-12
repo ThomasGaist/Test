@@ -66,7 +66,7 @@ public class LootTables : MonoBehaviour
         genericEnemyTable.AddEntry(genericEnemyItems[2], 80, false, false, true);
         genericEnemyTable.AddEntry(genericEnemyItems[3], 20, false, false, true);
         //Null entry for probability for no drop
-        genericEnemyTable.AddEntry(new RDSNullValue(80), 80, false, false, true);
+        //genericEnemyTable.AddEntry(new RDSNullValue(80), 80, false, false, true);
 
         //Remove dead enemies from enemies at start
         enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));

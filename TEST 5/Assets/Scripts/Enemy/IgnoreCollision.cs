@@ -14,4 +14,8 @@ public class IgnoreCollision : MonoBehaviour
         Physics2D.IgnoreLayerCollision(12, 12);
     }
 
+    private void OnDisable()
+    {
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), other, false);
+    }
 }

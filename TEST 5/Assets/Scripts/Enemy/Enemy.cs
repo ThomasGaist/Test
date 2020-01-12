@@ -72,7 +72,7 @@ public class Enemy : Character
     {
         eventsystem = GameEvents.current;
         //eventsystem.onEnemyDamage += Damage;
-
+        
         base.Start();
         Player.Instance.Dead += new DeadEventHandler(RemoveTarget);
         EnemyHealth = maxHealth;
@@ -80,19 +80,13 @@ public class Enemy : Character
         lootDropper = FindObjectOfType<LootTables>();
 
         ChangeState(new IdleState());
-        
+
+      
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.Q) && InMeleeRange)
-        {
-            
-           health -= 10;
-           Damage();
-          
-        }*/
         if (!IsDead)
         {
             if (!TakingDamage)
@@ -108,6 +102,7 @@ public class Enemy : Character
         {
             Death();
         }
+
     }
 
 
@@ -178,7 +173,7 @@ public class Enemy : Character
     }
     public void Damage()
     {
-        Debug.Log("Taking Damage");
+        //Debug.Log("Taking Damage");
         if (health >0)
         {
             Animator.SetTrigger("Damage");
@@ -207,6 +202,12 @@ public class Enemy : Character
     public Vector2 GetDirection()
     {
         return facingRight ? Vector2.right : Vector2.left;
+    }
+
+    public void TakeHitDamage(int damage)
+    {
+        health -= damage;
+        Damage();
     }
 
     public override IEnumerator TakeDamage()
