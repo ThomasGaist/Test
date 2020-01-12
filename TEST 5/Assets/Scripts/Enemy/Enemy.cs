@@ -6,9 +6,9 @@ using UnityEngine;
 public class Enemy : Character
 {
     //Loot
-    [SerializeField]
-    private LootTable thisLoot;
-    public LootTable ThisLoot { get => thisLoot; }
+    //[SerializeField]
+    // private LootTable thisLoot;
+   // public LootTable ThisLoot { get => thisLoot; }
     [SerializeField]
     private GameObject lootForDrop;
 
@@ -32,6 +32,10 @@ public class Enemy : Character
     public int LootLevel {get => lootlevel;}
 
     public int EnemyLevel { get => level; set => level = value; }
+    public int EnemyHealth { get => health; set => health = value; }
+    [SerializeField]
+    private int maxHealth;
+ 
 
     #endregion
 
@@ -67,9 +71,11 @@ public class Enemy : Character
     public override void Start()
     {
         eventsystem = GameEvents.current;
+        //eventsystem.onEnemyDamage += Damage;
 
         base.Start();
         Player.Instance.Dead += new DeadEventHandler(RemoveTarget);
+        EnemyHealth = maxHealth;
         sr = GetComponent<SpriteRenderer>();
         lootDropper = FindObjectOfType<LootTables>();
 
@@ -80,13 +86,13 @@ public class Enemy : Character
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && InMeleeRange)
+        /*if (Input.GetKeyDown(KeyCode.Q) && InMeleeRange)
         {
             
            health -= 10;
            Damage();
           
-        }
+        }*/
         if (!IsDead)
         {
             if (!TakingDamage)
@@ -97,6 +103,7 @@ public class Enemy : Character
             
             LookAtTarget();
         }
+        //make sure loot drops at death
         if (IsDead && lootDropper.MyLootDropped == true)
         {
             Death();
@@ -171,6 +178,7 @@ public class Enemy : Character
     }
     public void Damage()
     {
+        Debug.Log("Taking Damage");
         if (health >0)
         {
             Animator.SetTrigger("Damage");
@@ -211,8 +219,11 @@ public class Enemy : Character
         else
         {
             Animator.SetTrigger("Death");
-                yield return null; 
+            eventsystem.EnemyDeath();
+            yield return null; 
         }
+
+        yield break; 
     }
 
     public override void Death()
@@ -221,7 +232,8 @@ public class Enemy : Character
         
         this.enabled = false;
         this.tag = "DeadEnemy";
-       
+        //eventsystem.onEnemyDamage -= Damage;
+
     }
 
     #region UNUSED CODE

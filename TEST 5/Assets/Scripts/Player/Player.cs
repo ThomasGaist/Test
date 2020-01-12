@@ -26,15 +26,19 @@ public class Player : Character
 
     public event DeadEventHandler Dead;
 
-    [SerializeField] private KeyCode jumpKey = KeyCode.Space;
+    //KEYCODES
+    //consider a separate script for this
+
+    [SerializeField]
+    private KeyCode jumpKey = KeyCode.Space;
     
-    //Equipment code
+    //EQUIPMENTS CODE
     [SerializeField]
     private GearSocket[] gearsockets;
     
     private bool flipped;
 
-    //Player Level
+    //PLAYER LEVEL
     private int level = 10;
 
 	public float jumpHeight = 4;
@@ -47,12 +51,11 @@ public class Player : Character
     [SerializeField]
     private float immortalTime;
 
-
+    //MOVEMENT
     float accelerationTimeAirborne = .2f;
     [SerializeField] float accelerationTimeGrounded = .1f;
     public float moveSpeed = 30f;
-    //public bool flip;
-    private bool attack; 
+
 
     float gravity;
     float jumpVelocity;
@@ -60,7 +63,11 @@ public class Player : Character
     Vector3 velocity;
     float velocityXSmoothing;
 
+    //ATTACK VARIABLES
+    private bool attack;
+    private float attackDamage;
 
+    //COMPONENTS
     Controller2D controller;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -85,12 +92,15 @@ public class Player : Character
     public float CurrentSpeed { get => currentSpeed;}
     public bool Flipped { get => flipped;}
     public int MyPlayerLevel { get => level; set => level = value; }
+    public float MyAttackDamage { get => attackDamage; set => attackDamage = value; }
 
     //EVENTS
     private GameEvents eventsystem; 
 
     void Start()
     {
+        eventsystem = GameEvents.current;
+
         controller = GetComponent<Controller2D>();
 
         rb = GetComponent<Rigidbody2D>();
@@ -103,10 +113,13 @@ public class Player : Character
 
         startPos = new Vector3(-2.11f, -0.87f, 4);
 
+        gearsockets = GetComponentsInChildren<GearSocket>();
         //EVENTS
-       
 
 
+        //ATTACK
+        //needs to be calculated based on weapondamage, skills, buff etc.
+        attackDamage = 10;
     }
     // print("Gravity:" + gravity + "Jump Velocity" + jumpVelocity);
 
@@ -235,6 +248,7 @@ public class Player : Character
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
+            eventsystem.PlayerAttack();
             attack = true;
         }
 
@@ -263,7 +277,7 @@ public class Player : Character
 
         if (!immortal)
         {
-            health -= 10;
+            
             if (!IsDead)
             {
                 //Animator.SetLayerWeight(1, 0);

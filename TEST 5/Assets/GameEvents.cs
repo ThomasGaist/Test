@@ -27,6 +27,15 @@ public class GameEvents : MonoBehaviour
         }
     }
 
+    public event Action onEnemyDamage;
+    public void EnemyDamage()
+    {
+        if (onEnemyDamage != null)
+        {
+            onEnemyDamage();
+        }
+    }
+
     #endregion
 
     #region CHARACTER ANIMATIONS
@@ -43,4 +52,16 @@ public class GameEvents : MonoBehaviour
 
     #endregion
 
+    #region PLAYER EVENTS
+    public event Action onPlayerAttack;
+
+    public void PlayerAttack()
+    {
+        if(onPlayerAttack!= null)
+        {
+            onPlayerAttack();
+        }
+    }
+
+    #endregion
 }

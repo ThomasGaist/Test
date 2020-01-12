@@ -110,8 +110,7 @@ public class GearSocket : MonoBehaviour
     public virtual void Awake()
     {
         //EVENTS
-        eventsystem = GameEvents.current;
-        eventsystem.onItemEquipped += EquipItems;
+   
 
 
         //amount of overall character animations
@@ -196,7 +195,10 @@ public class GearSocket : MonoBehaviour
 
     void Start()
     {
+        //EVENTS
+        eventsystem = GameEvents.current;
 
+        eventsystem.onItemEquipped += EquipItems;
     }
 
     // Update is called once per frame
@@ -555,6 +557,6 @@ public class GearSocket : MonoBehaviour
     #endregion
     private void OnDestroy()
     {
-        eventsystem.onItemEquipped -= EquipItems;
+     //   eventsystem.onItemEquipped -= EquipItems;
     }
 }
