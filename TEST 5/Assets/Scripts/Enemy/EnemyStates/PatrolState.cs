@@ -15,16 +15,19 @@ public class PatrolState : IEnemyState
 
     public void Execute()
     {
-        
-        Patrol();
-
-        enemy.Move();
-
-        Debug.Log("Patrolling");
-
-        if (enemy.Target != null)
+        //to make sure enemy is not moving when taking damage
+        if (!enemy.Animator.GetCurrentAnimatorStateInfo(0).IsTag("Damage"))
         {
-            enemy.ChangeState(new ChaseState());
+            Patrol();
+
+            enemy.Move();
+
+            // Debug.Log("Patrolling");
+
+            if (enemy.Target != null)
+            {
+                enemy.ChangeState(new ChaseState());
+            }
         }
     }
 

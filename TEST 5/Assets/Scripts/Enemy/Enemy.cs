@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,7 +26,7 @@ public class Enemy : Character
 
     private int level = 1;
 
-
+   
     private LootTables lootDropper;
     private int lootlevel = 0;
     public int LootLevel {get => lootlevel;}
@@ -35,8 +36,7 @@ public class Enemy : Character
     #endregion
 
     #region EVENTS
-
-
+    private GameEvents eventsystem; 
 
     #endregion
 
@@ -59,13 +59,15 @@ public class Enemy : Character
     {
         get
         {
-            return health <= 0; 
+            return health <= 0;
         }
     }
 
 
     public override void Start()
     {
+        eventsystem = GameEvents.current;
+
         base.Start();
         Player.Instance.Dead += new DeadEventHandler(RemoveTarget);
         sr = GetComponent<SpriteRenderer>();
@@ -78,10 +80,12 @@ public class Enemy : Character
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && InMeleeRange)
         {
-            health = 0;
-            //Death();
+            
+           health -= 10;
+           Damage();
+          
         }
         if (!IsDead)
         {
@@ -155,14 +159,26 @@ public class Enemy : Character
     public void Move()
     {
 
-        if (!this.Animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+        if (!this.Animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack") || !this.Animator.GetCurrentAnimatorStateInfo(0).IsTag("Damage"))
         {
             Animator.SetFloat("Speed", 1);
 
             transform.Translate(GetDirection() * (movementSpeed * Time.deltaTime));
         }
 
+
         
+    }
+    public void Damage()
+    {
+        if (health >0)
+        {
+            Animator.SetTrigger("Damage");
+        }
+        else if (health <= 0)
+        {
+            eventsystem.EnemyDeath();
+        }
     }
 
     public void Chase()
@@ -187,7 +203,6 @@ public class Enemy : Character
 
     public override IEnumerator TakeDamage()
     {
-        health -= 10;
 
         if (!IsDead)
         {
@@ -202,16 +217,11 @@ public class Enemy : Character
 
     public override void Death()
     {
-        // MakeLoot();
-
-        //Will only use this until good death animation. 
-        //Destroy(gameObject);
-        //Destroy(transform.parent.gameObject);
-
-        // Fix spawning problem
         Animator.SetTrigger("Death");
+        
         this.enabled = false;
         this.tag = "DeadEnemy";
+       
     }
 
     #region UNUSED CODE

@@ -18,13 +18,15 @@ public class IdleState : IEnemyState
 
     public void Execute()
     {
-        Debug.Log("I'm idling");
-        Idle();
-        if(enemy.Target != null)
+        if (!enemy.Animator.GetCurrentAnimatorStateInfo(0).IsTag("Damage"))
         {
-            enemy.ChangeState(new PatrolState());
+            //Debug.Log("I'm idling");
+            Idle();
+            if (enemy.Target != null)
+            {
+                enemy.ChangeState(new PatrolState());
+            }
         }
-
     }
 
     public void Exit()

@@ -14,23 +14,25 @@ public class ChaseState : IEnemyState
 
     public void Execute()
     {
-     
-        enemy.Chase();
-
-        if (enemy.Target != null && enemy.InMeleeRange)
+        if (!enemy.Animator.GetCurrentAnimatorStateInfo(0).IsTag("Damage"))
         {
-            enemy.ChangeState(new MeleeState());
-        }
+            enemy.Chase();
 
-        else if(enemy.Target == null)
-        {
-            enemy.ChangeState(new IdleState());
+            if (enemy.Target != null && enemy.InMeleeRange)
+            {
+                enemy.ChangeState(new MeleeState());
+            }
+
+            else if (enemy.Target == null)
+            {
+                enemy.ChangeState(new IdleState());
+            }
         }
 
         
 
 
-        Debug.Log("Chasing");
+        //Debug.Log("Chasing");
     }
 
     public void Exit()

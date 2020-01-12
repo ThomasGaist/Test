@@ -17,29 +17,31 @@ public class MeleeState : IEnemyState
 
     public void Execute()
     {
-        if (enemy.Target != null && enemy.InMeleeRange)
+        if (!enemy.Animator.GetCurrentAnimatorStateInfo(0).IsTag("Damage"))
         {
-            Attack();
+            if (enemy.Target != null && enemy.InMeleeRange)
+            {
+                Attack();
+            }
+
+            /*else if (enemy.Target != null && !enemy.InMeleeRange)
+            {
+                enemy.Chase();
+            }*/
+            //Debug.Log("Combat");
+
+
+            if (enemy.Target != null && !enemy.InMeleeRange && !enemy.Animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+            {
+                enemy.ChangeState(new ChaseState());
+            }
+
+            if (enemy.Target == null && !enemy.Animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+            {
+                enemy.ChangeState(new IdleState());
+            }
+
         }
-
-        /*else if (enemy.Target != null && !enemy.InMeleeRange)
-        {
-            enemy.Chase();
-        }*/
-        //Debug.Log("Combat");
-
-
-        if(enemy.Target != null && !enemy.InMeleeRange && !enemy.Animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
-        {
-            enemy.ChangeState(new ChaseState());
-        }
-
-        if (enemy.Target == null && !enemy.Animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
-        {
-            enemy.ChangeState(new IdleState());
-        }
-
-
     }
 
     public void Exit()

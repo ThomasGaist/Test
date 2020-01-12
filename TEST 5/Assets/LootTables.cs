@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -40,9 +41,17 @@ public class LootTables : MonoBehaviour
 
     #endregion
 
+    #region EVENTS
+    private GameEvents eventsystem; 
+
+    #endregion
+
     #region METHODS
     private void Awake()
     {
+        eventsystem = GameEvents.current;
+        eventsystem.onEnemyDeath += GenerateLoot;
+
         if (genericEnemyItems == null)
         {
             genericEnemyItems = new List<Item>();
@@ -78,9 +87,9 @@ public class LootTables : MonoBehaviour
 
     }
 
-
-    private void FixedUpdate()
+    public void GenerateLoot()
     {
+        //Debug.Log("loot generated!");
         enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
         List<GameObject> tmpEnemies = new List<GameObject>(enemies);
         for (int i = enemies.Count - 1; i >= 0; i--)
@@ -95,7 +104,7 @@ public class LootTables : MonoBehaviour
                 //setting amount of items to drop, Random at the moment
                 subTables[lootTable].rdsCount = RDSRandom.GetIntValue(1,3);
 
-               
+
 
 
                 if (subTables[lootTable].rdsCount > 0)
@@ -106,14 +115,14 @@ public class LootTables : MonoBehaviour
                     List<Item> loot3 = new List<Item>();
                     for (int x = 0; x < subTables[lootTable].rdsCount; x++)
                     {
-                        if(loot2[x] != null)
-                        { 
+                        if (loot2[x] != null)
+                        {
                             Item item = loot2[x] as Item;
                             loot3.Add(item); //= loot2[x] as Item; 
                         }
 
                     }
-                  
+
 
                     loot = new Item[loot3.Count];
                     for (int x = 0; x < loot3.Count; x++)
@@ -132,16 +141,23 @@ public class LootTables : MonoBehaviour
                 }
                 lootDropped = false;
 
+                /*
                 //remove enemy from list
                 enemies.Remove(enemies[i]);
-
+                */
                 break;
 
             }
-           
+
         }
- 
-      
+    }
+
+
+    private void FixedUpdate()
+    {
+       
+
+        
     }
 
     #endregion
@@ -190,7 +206,7 @@ public class LootTables : MonoBehaviour
             lootForDrop.GetComponent<DroppedLoot>().Layer = 0;
         }
 
-        GameObject nextLoot = Instantiate(lootForDrop, new Vector3((enemy.transform.position.x + Random.Range(-20.0f, 20.0f)), transform.position.y, transform.position.z), Quaternion.identity);
+        GameObject nextLoot = Instantiate(lootForDrop, new Vector3((enemy.transform.position.x + UnityEngine.Random.Range(-20.0f, 20.0f)), transform.position.y, transform.position.z), Quaternion.identity);
         nextLoot.GetComponent<SpriteRenderer>().sortingOrder = lootForDrop.GetComponent<DroppedLoot>().Layer;
         nextLoot.name = nextLoot.GetComponent<DroppedLoot>().MyDroppedLoot.ItemName;
         nextLoot.SetActive(true);
@@ -203,11 +219,14 @@ public class LootTables : MonoBehaviour
     {
 
         //Maybe add area level, player luck etc. 
-        int gold = Mathf.RoundToInt((10 * enemyLevel + playerLevel)* Random.Range(1.0f, 1.5f));
+        int gold = Mathf.RoundToInt((10 * enemyLevel + playerLevel)* UnityEngine.Random.Range(1.0f, 1.5f));
         return gold;
 
     }
 
-
+    private void OnDestroy()
+    {
+        eventsystem.onEnemyDeath -= GenerateLoot;
+    }
 }
 
