@@ -16,6 +16,10 @@ public class InventoryManager : MonoBehaviour
 	[SerializeField] StatPanel statPanel;
     [SerializeField] ItemToolTip itemToolTip;
     [SerializeField] Image draggableItem;
+    [SerializeField] DropItemArea dropItemArea;
+    [SerializeField] GameObject lootForDrop;
+
+    private Player player;
 
     private ItemSlot draggedSlot;
 
@@ -39,6 +43,7 @@ public class InventoryManager : MonoBehaviour
         else
             Instance = this;
 
+        player = FindObjectOfType<Player>();
 
 		statPanel.SetStats(Strength, Agility, Intelligence, Vitality);
 		statPanel.UpdateStatValues();
@@ -66,6 +71,8 @@ public class InventoryManager : MonoBehaviour
         // Drop
         inventory.OnDropEvent += Drop;
         equipmentPanel.OnDropEvent += Drop;
+
+        dropItemArea.OnDropEvent += DropItemOutsideUI;
 
     }
     private void Update()
@@ -133,8 +140,29 @@ public class InventoryManager : MonoBehaviour
     }
     private void Drop(ItemSlot dropItemSlot)
     {
-        if (draggedSlot == null) return;
-        
+      if (draggedSlot == null) return;
+
+        /*
+        if (draggedSlot == null) {
+
+            
+            Instantiate(draggedSlot.Item);
+            lootForDrop.GetComponent<DroppedLoot>().MyDroppedLoot = draggedSlot.Item;
+            lootForDrop.GetComponent<SpriteRenderer>().enabled = true;
+            lootForDrop.GetComponent<DroppedLoot>().Dropped = true;
+            lootForDrop.GetComponent<DroppedLoot>().Layer++;
+            if (lootForDrop.GetComponent<DroppedLoot>().Layer >= 1000)
+            {
+                lootForDrop.GetComponent<DroppedLoot>().Layer = 0;
+            }
+
+            GameObject nextLoot = Instantiate(lootForDrop, new Vector3((player.transform.position.x + UnityEngine.Random.Range(-20.0f, 20.0f)), transform.position.y, transform.position.z), Quaternion.identity);
+            nextLoot.GetComponent<SpriteRenderer>().sortingOrder = lootForDrop.GetComponent<DroppedLoot>().Layer;
+            nextLoot.name = nextLoot.GetComponent<DroppedLoot>().MyDroppedLoot.ItemName;
+            nextLoot.SetActive(true);
+
+        }*/
+
         if (dropItemSlot.CanReceiveItem(draggedSlot.Item) && draggedSlot.CanReceiveItem(dropItemSlot.Item))
         {
 
@@ -161,6 +189,30 @@ public class InventoryManager : MonoBehaviour
 
        // 
 
+    }
+    void DropItemOutsideUI()
+    {
+        if (draggedSlot == null) return;
+
+
+        Instantiate(draggedSlot.Item);
+        lootForDrop.GetComponent<DroppedLoot>().MyDroppedLoot = draggedSlot.Item;
+        lootForDrop.GetComponent<SpriteRenderer>().enabled = true;
+        lootForDrop.GetComponent<DroppedLoot>().Dropped = true;
+        lootForDrop.GetComponent<DroppedLoot>().Layer++;
+        if (lootForDrop.GetComponent<DroppedLoot>().Layer >= 1000)
+        {
+            lootForDrop.GetComponent<DroppedLoot>().Layer = 0;
+        }
+
+        GameObject nextLoot = Instantiate(lootForDrop, new Vector3((player.transform.position.x + UnityEngine.Random.Range(-20.0f, 20.0f)), player.transform.position.y, player.transform.position.z), Quaternion.identity);
+        nextLoot.GetComponent<SpriteRenderer>().sortingOrder = lootForDrop.GetComponent<DroppedLoot>().Layer;
+        nextLoot.name = nextLoot.GetComponent<DroppedLoot>().MyDroppedLoot.ItemName;
+
+        //Destroy(draggedSlot.Item);
+        draggedSlot.Item = null;
+
+        nextLoot.SetActive(true);
     }
 
 

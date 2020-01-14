@@ -211,7 +211,7 @@ public class LootTables : MonoBehaviour
         nextLoot.GetComponent<SpriteRenderer>().sortingOrder = lootForDrop.GetComponent<DroppedLoot>().Layer;
         nextLoot.name = nextLoot.GetComponent<DroppedLoot>().MyDroppedLoot.ItemName;
         nextLoot.SetActive(true);
-       
+        
     }
 
 
