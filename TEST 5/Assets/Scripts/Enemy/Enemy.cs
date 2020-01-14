@@ -5,10 +5,7 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-    //Loot
-    //[SerializeField]
-    // private LootTable thisLoot;
-   // public LootTable ThisLoot { get => thisLoot; }
+
     [SerializeField]
     private GameObject lootForDrop;
 
@@ -40,10 +37,15 @@ public class Enemy : Character
     #endregion
 
     #region EVENTS
-    private GameEvents eventsystem; 
+    private GameEvents eventsystem;
 
     #endregion
 
+    #region ID
+   
+    private int num = 1;
+   
+    #endregion
 
     [SerializeField]
     public float meleeRange = 3f; 
@@ -67,22 +69,40 @@ public class Enemy : Character
         }
     }
 
-
+    private void Awake()
+    {
+        
+       
+    }
     public override void Start()
     {
         eventsystem = GameEvents.current;
         //eventsystem.onEnemyDamage += Damage;
-        
+      
+
         base.Start();
         Player.Instance.Dead += new DeadEventHandler(RemoveTarget);
         EnemyHealth = maxHealth;
         sr = GetComponent<SpriteRenderer>();
+        //Set unique sorting layer
+        
+        //name += num.ToString();
+        sr.sortingOrder = num;
+
+        num++;
+        if (num == 1000)
+        {
+            num = 0;
+        }
+        //unique instances
+
         lootDropper = FindObjectOfType<LootTables>();
 
         ChangeState(new IdleState());
 
       
     }
+  
 
     // Update is called once per frame
     void Update()
@@ -173,14 +193,22 @@ public class Enemy : Character
     }
     public void Damage()
     {
-        //Debug.Log("Taking Damage");
+     
         if (health >0)
         {
             Animator.SetTrigger("Damage");
+
+            eventsystem.EnemyDamage();
         }
         else if (health <= 0)
         {
-            eventsystem.EnemyDeath();
+           int callcount = 0;
+            if (callcount == 0 && !this.CompareTag("DeadEnemy"))
+            {
+                eventsystem.EnemyDeath();
+                callcount++;
+            }
+            
         }
     }
 
@@ -230,9 +258,11 @@ public class Enemy : Character
     public override void Death()
     {
         Animator.SetTrigger("Death");
-        
+        eventsystem.EnemyDamage();
+
         this.enabled = false;
         this.tag = "DeadEnemy";
+        
         //eventsystem.onEnemyDamage -= Damage;
 
     }

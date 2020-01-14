@@ -102,7 +102,8 @@ public class LootTables : MonoBehaviour
                 //Set max and min itemdropvalue according to enemy level, player level, luck etc. 
 
                 //setting amount of items to drop, Random at the moment
-                subTables[lootTable].rdsCount = RDSRandom.GetIntValue(1,3);
+                //subTables[lootTable].rdsCount = UnityEngine.Random.Range(1,3);
+                subTables[lootTable].rdsCount = 2;
 
 
 

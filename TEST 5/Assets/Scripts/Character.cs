@@ -8,6 +8,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     protected int health;
 
+
     [SerializeField]
     private EdgeCollider2D SwordCollider;
 

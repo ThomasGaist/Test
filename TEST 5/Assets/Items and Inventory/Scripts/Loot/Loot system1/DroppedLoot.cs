@@ -77,10 +77,11 @@ public class DroppedLoot: MonoBehaviour
 
         if (isInRange && Input.GetKeyDown(itemPickUp))
         {
-            
+            if (!inventory.IsFull())
+            {
                 inventory.AddItem(Instantiate(MyDroppedLoot));
                 Destroy(gameObject);
-            
+            }
         }
 
     }

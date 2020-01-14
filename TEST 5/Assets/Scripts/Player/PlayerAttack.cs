@@ -55,8 +55,12 @@ public class PlayerAttack : MonoBehaviour
 
         else
         {
-            timeBtwAttack -= Time.deltaTime;
+            return;
         }
+    }
+    private void FixedUpdate()
+    {
+        timeBtwAttack -= Time.deltaTime;
     }
 
     private void MeleeAttack()

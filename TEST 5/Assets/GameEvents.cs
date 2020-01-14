@@ -36,6 +36,15 @@ public class GameEvents : MonoBehaviour
         }
     }
 
+    public event Action onEnemyInstantiation;
+    public void EnemyInstantiated()
+    {
+        if(onEnemyInstantiation != null)
+        {
+            onEnemyInstantiation();
+        }
+    }
+
     #endregion
 
     #region CHARACTER ANIMATIONS
@@ -64,4 +73,6 @@ public class GameEvents : MonoBehaviour
     }
 
     #endregion
+
+    
 }
