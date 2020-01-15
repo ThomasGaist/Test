@@ -97,6 +97,7 @@ public class InventoryManager : MonoBehaviour
         if (equippableItem != null)
         {
             Unequip(equippableItem);
+            GameEvents.current.ItemEquipped();
         }
     }
 
@@ -142,27 +143,6 @@ public class InventoryManager : MonoBehaviour
     {
       if (draggedSlot == null) return;
 
-        /*
-        if (draggedSlot == null) {
-
-            
-            Instantiate(draggedSlot.Item);
-            lootForDrop.GetComponent<DroppedLoot>().MyDroppedLoot = draggedSlot.Item;
-            lootForDrop.GetComponent<SpriteRenderer>().enabled = true;
-            lootForDrop.GetComponent<DroppedLoot>().Dropped = true;
-            lootForDrop.GetComponent<DroppedLoot>().Layer++;
-            if (lootForDrop.GetComponent<DroppedLoot>().Layer >= 1000)
-            {
-                lootForDrop.GetComponent<DroppedLoot>().Layer = 0;
-            }
-
-            GameObject nextLoot = Instantiate(lootForDrop, new Vector3((player.transform.position.x + UnityEngine.Random.Range(-20.0f, 20.0f)), transform.position.y, transform.position.z), Quaternion.identity);
-            nextLoot.GetComponent<SpriteRenderer>().sortingOrder = lootForDrop.GetComponent<DroppedLoot>().Layer;
-            nextLoot.name = nextLoot.GetComponent<DroppedLoot>().MyDroppedLoot.ItemName;
-            nextLoot.SetActive(true);
-
-        }*/
-
         if (dropItemSlot.CanReceiveItem(draggedSlot.Item) && draggedSlot.CanReceiveItem(dropItemSlot.Item))
         {
 
@@ -171,13 +151,13 @@ public class InventoryManager : MonoBehaviour
 
             if(draggedSlot is EquipmentSlot)
             {
-                if (dragItem != null) dragItem.Unequip(this);
-                if (dropItem != null) dropItem.Equip(this);
+                if (dragItem != null) dragItem.Unequip(this); 
+                if (dropItem != null) dropItem.Equip(this); 
 
             }
             if(dropItemSlot is EquipmentSlot)
             {
-                if (dragItem != null) dragItem.Equip(this);
+                if (dragItem != null) dragItem.Equip(this); 
                 if (dropItem != null) dropItem.Unequip(this);
             }
             statPanel.UpdateStatValues();
@@ -185,6 +165,7 @@ public class InventoryManager : MonoBehaviour
             Item draggedItem = draggedSlot.Item;
             draggedSlot.Item = dropItemSlot.Item;
             dropItemSlot.Item = draggedItem;
+            GameEvents.current.ItemEquipped();
         }
 
        // 

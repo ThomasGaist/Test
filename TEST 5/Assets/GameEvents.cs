@@ -58,6 +58,15 @@ public class GameEvents : MonoBehaviour
             onItemEquipped();
         }
     }
+    public event Action onItemUnEquipped;
+
+    public void ItemUnEquipped()
+    {
+        if (onItemUnEquipped != null)
+        {
+            onItemUnEquipped();
+        }
+    }
 
     #endregion
 

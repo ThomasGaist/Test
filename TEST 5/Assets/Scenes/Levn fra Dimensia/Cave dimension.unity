@@ -4892,8 +4892,8 @@ MonoBehaviour:
   innerNoWeapon: []
   outerOneHanded: []
   innerOneHanded: []
-  weaponSocket1: {fileID: 0}
-  weaponSocket2: {fileID: 0}
+  weaponSocket1: {fileID: 735172533}
+  weaponSocket2: {fileID: 702577857}
   oneHandedEquipped1: 0
   oneHandedEquipped2: 0
   weaponSlot1: {fileID: 1283842172}
@@ -8499,6 +8499,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1525b40a2d14d442988f6f45c9e4af5e, type: 2}
   - {fileID: 11400000, guid: 79256157ec9f444f2b931d9ecef2f5f3, type: 2}
   - {fileID: 11400000, guid: edb484a003bb34549a9bb2afd6d5b638, type: 2}
+  - {fileID: 11400000, guid: 603b4dbb89d8d4a559d04f6f758b7044, type: 2}
   loot: []
   enemies: []
   lootForDrop: {fileID: 801172169}

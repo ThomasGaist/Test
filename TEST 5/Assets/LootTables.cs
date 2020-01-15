@@ -65,6 +65,7 @@ public class LootTables : MonoBehaviour
         genericEnemyTable.AddEntry(genericEnemyItems[1], 20, false, false, true);
         genericEnemyTable.AddEntry(genericEnemyItems[2], 80, false, false, true);
         genericEnemyTable.AddEntry(genericEnemyItems[3], 20, false, false, true);
+        genericEnemyTable.AddEntry(genericEnemyItems[4], 20, true, false, true);
         //Null entry for probability for no drop
         //genericEnemyTable.AddEntry(new RDSNullValue(80), 80, false, false, true);
 

@@ -199,11 +199,9 @@ public class GearSocket : MonoBehaviour
         eventsystem = GameEvents.current;
 
         eventsystem.onItemEquipped += EquipItems;
-    }
+        eventsystem.onItemUnEquipped += EquipItems;
 
-    // Update is called once per frame
-    private void Update()
-    { }
+    }
 
     private void EquipItems()
     {
@@ -239,6 +237,7 @@ public class GearSocket : MonoBehaviour
             HandleWeaponSocket();
         }
     }
+
     void FixedUpdate()
     {
        //Handle all animation parameters in fixedupdate
@@ -256,7 +255,7 @@ public class GearSocket : MonoBehaviour
         animatorOverrideController["WalkToIdle"] = animations[3];
     }
 
-    public virtual void UnEquip(AnimationClip[] animationClips)
+    public void UnEquip(AnimationClip[] animationClips)
     {
         if (animationClips != null)
         {
