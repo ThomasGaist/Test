@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FlickeringLight : MonoBehaviour
 {
-    Light2D TorchLight;
+    UnityEngine.Experimental.Rendering.Universal.Light2D TorchLight;
     [SerializeField] private float minWaitTime = 0.2f;
     [SerializeField] private float maxWaitTime = 0.5f;
     [SerializeField] private float minIntensity = 0.2f;
@@ -22,7 +22,7 @@ public class FlickeringLight : MonoBehaviour
 
     private void Start()
     {
-        TorchLight = GetComponent<Light2D>();
+        TorchLight = GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>();
      
 
         StartCoroutine(Flickering() );

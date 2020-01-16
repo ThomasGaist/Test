@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEditor;
+//using UnityEditor;
 using System;
 
 [CreateAssetMenu]
@@ -24,8 +24,10 @@ public class Item : ScriptableObject, IRDSObject
 
     private void Awake()
     {
-        string path = AssetDatabase.GetAssetPath(this);
-        id = AssetDatabase.AssetPathToGUID(path);
+        /* string path = AssetDatabase.GetAssetPath(this);
+         id = AssetDatabase.AssetPathToGUID(path);*/
+        id = ToString(EnemyInstances.num);
+        EnemyInstances.num++;
     }
 
     public virtual void OnRDSPreResultEvaluation(EventArgs e)

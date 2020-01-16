@@ -137,7 +137,7 @@ public class Player : Character
     {
         if (!TakingDamage && !IsDead)
         {
-            controller.Move(velocity * Time.deltaTime);
+            controller.Move(velocity * Time.fixedDeltaTime);
 
             Flip();
             HandleMovement();

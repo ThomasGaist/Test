@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyInstances : MonoBehaviour
 {
-    static int num;
+    public static int num;
 
     private void Start()
     {
@@ -18,10 +18,10 @@ public class EnemyInstances : MonoBehaviour
         foreach (var enemy in enemies)
         {
             enemy.GetComponent<SpriteRenderer>().sortingOrder = num;
-            if(num == 1000)
+            /*if(num == 1000)
             {
                 num = 0;
-            }
+            }*/
         }
     }
 }
