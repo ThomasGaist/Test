@@ -68,6 +68,17 @@ public class GameEvents : MonoBehaviour
         }
     }
 
+    public event Action onFlipPlayer;
+
+    public void PlayerFlipped()
+    {
+        if(onFlipPlayer != null)
+        {
+            onFlipPlayer();
+        }
+    }
+    
+
     #endregion
 
     #region PLAYER EVENTS

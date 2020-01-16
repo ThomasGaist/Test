@@ -64,7 +64,7 @@ public class Player : Character
     float velocityXSmoothing;
 
     //ATTACK VARIABLES
-    private bool attack;
+    private bool attacking;
     [SerializeField]
     private float attackDamage;
 
@@ -241,7 +241,7 @@ public class Player : Character
 
     private void HandleAttacks()
     {
-        if (attack && !this.animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+        if (attacking && !this.animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
             animator.SetTrigger("Attack");
             //rb.velocity = Vector2.zero;
@@ -253,14 +253,14 @@ public class Player : Character
         if (Input.GetKeyDown(attackKey)) 
         {
             eventsystem.PlayerAttack();
-            attack = true;
+            attacking = true;
         }
 
     }
 
     private void ResetValues()
     {
-        attack = false; 
+        attacking = false; 
     }
 
     /* blinker hvis spiller rammes

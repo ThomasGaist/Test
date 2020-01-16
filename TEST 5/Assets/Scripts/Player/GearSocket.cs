@@ -17,6 +17,8 @@ public class GearSocket : MonoBehaviour
 
     [SerializeField]
     private bool facingRight;
+    private bool previousOrientation;
+
 
     [SerializeField]
     protected bool right;
@@ -44,7 +46,12 @@ public class GearSocket : MonoBehaviour
 
     public float Speed { get => speed; set => speed = value; }
     public bool OnGround { get => onGround; set => onGround = value; }
-    public bool FacingRight { get => facingRight; set => facingRight = value; }
+    public bool FacingRight
+    {
+        get => facingRight;
+
+        set => facingRight = value;
+    }
 
     [SerializeField]
     public int AnimationArraySize { get => animationArraySize; }
@@ -110,7 +117,7 @@ public class GearSocket : MonoBehaviour
     public virtual void Awake()
     {
         //EVENTS
-   
+
 
 
         //amount of overall character animations
@@ -190,6 +197,8 @@ public class GearSocket : MonoBehaviour
                 AddAnimations(weapon2, outerAnimations2, innerAnimations2);
             }
         }
+
+        previousOrientation = FacingRight;
     }
 
 
@@ -200,19 +209,19 @@ public class GearSocket : MonoBehaviour
 
         eventsystem.onItemEquipped += EquipItems;
         eventsystem.onItemUnEquipped += EquipItems;
+        eventsystem.onFlipPlayer += UpdateAnimations;
 
     }
 
     private void EquipItems()
     {
-
+        WeaponsEquipped();
         if (socketType == SocketType.Default)
         {
             UnEquip(DefaultClips);
         }
         else if (socketType == SocketType.ArmHand)
         {
-            WeaponsEquipped();
 
             if (oneHandedEquipped1 == true)
             {
@@ -232,7 +241,7 @@ public class GearSocket : MonoBehaviour
                 EquipWeapons(outerNoWeapon, innerNoWeapon, outerOneHanded, innerOneHanded);
             }
         }
-        else if(socketType == SocketType.Weapon)
+        else if (socketType == SocketType.Weapon)
         {
             HandleWeaponSocket();
         }
@@ -240,12 +249,18 @@ public class GearSocket : MonoBehaviour
 
     void FixedUpdate()
     {
-       //Handle all animation parameters in fixedupdate
+        //Handle all animation parameters in fixedupdate
 
         MyAnimator.SetFloat("Speed", Speed);
         MyAnimator.SetBool("OnGround", OnGround);
-       
+
     }
+
+    private void LateUpdate()
+    {
+        UpdateAnimations();
+    }
+
 
     public void Equip(AnimationClip[] animations)
     {
@@ -265,7 +280,7 @@ public class GearSocket : MonoBehaviour
             animatorOverrideController["Walk"] = animationClips[2];
             animatorOverrideController["WalkToIdle"] = animationClips[3];
         }
-        else if(socketType == SocketType.Weapon)
+        else if (socketType == SocketType.Weapon)
         {
 
             animatorOverrideController["Idle"] = null;
@@ -379,6 +394,7 @@ public class GearSocket : MonoBehaviour
 
     }
 
+    //FOR ARM/HAND TYPE
     public void EquipWeapons(AnimationClip[] outerUnEquipped, AnimationClip[] innerUnEquipped, AnimationClip[] outerOneHanded, AnimationClip[] innerOneHanded)
     {
         spriteRenderer.color = Color.white;
@@ -553,6 +569,28 @@ public class GearSocket : MonoBehaviour
         }
 
     }
+
+    public void UpdateAnimations()
+    {
+        //Debug.Log("Updating Animations");
+        if (socketType == SocketType.Weapon)
+        {
+            EquipWeapon(outerAnimations1, innerAnimations1, outerAnimations2, innerAnimations2);
+        }
+        else if (socketType == SocketType.ArmHand)
+        {
+            EquipItems();
+            //EquipWeapons(outerNoWeapon, innerNoWeapon, outerOneHanded, innerOneHanded);
+        }
+        else
+        {
+            //return;
+        }
+    }
+
+    //COROUTINE FOR CHECKING FLIPPLAYER
+
+    
     #endregion
     private void OnDestroy()
     {
