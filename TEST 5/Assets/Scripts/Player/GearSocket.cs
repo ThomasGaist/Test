@@ -250,17 +250,19 @@ public class GearSocket : MonoBehaviour
     void FixedUpdate()
     {
         //Handle all animation parameters in fixedupdate
-
+        /*
         MyAnimator.SetFloat("Speed", Speed);
-        MyAnimator.SetBool("OnGround", OnGround);
+        MyAnimator.SetBool("OnGround", OnGround);*/
 
     }
 
     private void LateUpdate()
     {
+        MyAnimator.SetFloat("Speed", Speed);
+        MyAnimator.SetBool("OnGround", OnGround);
         UpdateAnimations();
     }
-
+ 
 
     public void Equip(AnimationClip[] animations)
     {

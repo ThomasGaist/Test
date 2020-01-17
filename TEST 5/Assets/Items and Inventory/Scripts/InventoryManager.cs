@@ -173,27 +173,31 @@ public class InventoryManager : MonoBehaviour
     }
     void DropItemOutsideUI()
     {
+
         if (draggedSlot == null) return;
 
+         Instantiate(draggedSlot.Item);
+         lootForDrop.GetComponent<DroppedLoot>().MyDroppedLoot = draggedSlot.Item;
+         lootForDrop.GetComponent<SpriteRenderer>().enabled = true;
+         lootForDrop.GetComponent<DroppedLoot>().Dropped = true;
+         lootForDrop.GetComponent<DroppedLoot>().Layer++;
+          if (lootForDrop.GetComponent<DroppedLoot>().Layer >= 1000)
+          {
+                lootForDrop.GetComponent<DroppedLoot>().Layer = 0;
+          }
 
-        Instantiate(draggedSlot.Item);
-        lootForDrop.GetComponent<DroppedLoot>().MyDroppedLoot = draggedSlot.Item;
-        lootForDrop.GetComponent<SpriteRenderer>().enabled = true;
-        lootForDrop.GetComponent<DroppedLoot>().Dropped = true;
-        lootForDrop.GetComponent<DroppedLoot>().Layer++;
-        if (lootForDrop.GetComponent<DroppedLoot>().Layer >= 1000)
+          GameObject nextLoot = Instantiate(lootForDrop, new Vector3((player.transform.position.x + UnityEngine.Random.Range(-20.0f, 20.0f)), player.transform.position.y, player.transform.position.z), Quaternion.identity);
+          nextLoot.GetComponent<SpriteRenderer>().sortingOrder = lootForDrop.GetComponent<DroppedLoot>().Layer;
+          nextLoot.name = nextLoot.GetComponent<DroppedLoot>().MyDroppedLoot.ItemName;
+
+            //Destroy(draggedSlot.Item);
+          draggedSlot.Item = null;
+        if(draggedSlot is EquipmentSlot)
         {
-            lootForDrop.GetComponent<DroppedLoot>().Layer = 0;
+            GameEvents.current.ItemUnEquipped();
         }
-
-        GameObject nextLoot = Instantiate(lootForDrop, new Vector3((player.transform.position.x + UnityEngine.Random.Range(-20.0f, 20.0f)), player.transform.position.y, player.transform.position.z), Quaternion.identity);
-        nextLoot.GetComponent<SpriteRenderer>().sortingOrder = lootForDrop.GetComponent<DroppedLoot>().Layer;
-        nextLoot.name = nextLoot.GetComponent<DroppedLoot>().MyDroppedLoot.ItemName;
-
-        //Destroy(draggedSlot.Item);
-        draggedSlot.Item = null;
-
-        nextLoot.SetActive(true);
+            nextLoot.SetActive(true);
+        
     }
 
 

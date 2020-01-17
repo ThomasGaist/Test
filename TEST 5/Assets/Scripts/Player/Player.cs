@@ -55,7 +55,8 @@ public class Player : Character
     float accelerationTimeAirborne = .2f;
     [SerializeField] float accelerationTimeGrounded = .1f;
     public float moveSpeed = 30f;
-
+    //private bool grounded;
+    //public bool Grounded { get => grounded; }
 
     float gravity;
     float jumpVelocity;
@@ -225,6 +226,8 @@ public class Player : Character
             g.Speed = Mathf.Abs(velocity.x);
             g.OnGround = grounded;
             g.FacingRight = facingRight;
+           // g.MyAnimator.SetFloat("Speed", g.Speed);
+           // g.MyAnimator.SetBool("OnGround", g.OnGround);
         }
 		
         
