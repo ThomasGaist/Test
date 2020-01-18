@@ -45,7 +45,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     
 
-    protected virtual void OnValidate()
+    protected virtual void Awake()
     {
         if (image == null)
             image = GetComponent<Image>();

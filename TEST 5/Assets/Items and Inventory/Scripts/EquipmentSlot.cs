@@ -1,15 +1,20 @@
-﻿
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class EquipmentSlot : ItemSlot
 {
-    public EquipmentType EquipmentType;
+    public List<EquipmentType> EquipmentType;
+    [SerializeField]
+    private string slotName;
 
-
-    protected override void OnValidate()
+    private void OnValidate()
     {
-        base.OnValidate();
-        gameObject.name = EquipmentType.ToString() + "slot";
+        gameObject.name = slotName + " slot";
+    }
+    protected override void Awake()
+    {
+        base.Awake();
+        gameObject.name = slotName + " slot";
     }
 
     public override bool CanReceiveItem(Item item)
@@ -19,7 +24,7 @@ public class EquipmentSlot : ItemSlot
             return true;
         
         EquippableItem equippableItem = item as EquippableItem;
-        return equippableItem != null && equippableItem.EquipmentType == EquipmentType;
+        return equippableItem != null && EquipmentType.Contains(equippableItem.EquipmentType);
     }
 
     

@@ -77,7 +77,10 @@ public class GameEvents : MonoBehaviour
             onFlipPlayer();
         }
     }
-    
+
+    //ANIMATION EVENTS
+
+
 
     #endregion
 

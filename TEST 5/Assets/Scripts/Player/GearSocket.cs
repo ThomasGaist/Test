@@ -32,6 +32,8 @@ public class GearSocket : MonoBehaviour
 
     public Animator MyAnimator { get; set; }
 
+    
+
     protected SpriteRenderer spriteRenderer;
 
     private Animator parentAnimator;
@@ -256,7 +258,7 @@ public class GearSocket : MonoBehaviour
 
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         MyAnimator.SetFloat("Speed", Speed);
         MyAnimator.SetBool("OnGround", OnGround);

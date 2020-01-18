@@ -38,7 +38,7 @@ public class EquipmentPanel : MonoBehaviour
     {
         for (int i = 0; i < equipmentSlots.Length; i++)
         {
-            if(equipmentSlots[i].EquipmentType == item.EquipmentType)
+            if(equipmentSlots[i].EquipmentType.Contains(item.EquipmentType))
             {
                 previousItem = (EquippableItem)equipmentSlots[i].Item;
                 equipmentSlots[i].Item = item;

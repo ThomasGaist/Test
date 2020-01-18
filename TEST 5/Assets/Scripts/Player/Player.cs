@@ -100,9 +100,9 @@ public class Player : Character
     public float MyAttackDamage { get => attackDamage; set => attackDamage = value; }
 
     //EVENTS
-    private GameEvents eventsystem; 
+    private GameEvents eventsystem;
 
-    void Start()
+    public override void Start()
     {
         eventsystem = GameEvents.current;
 
@@ -111,8 +111,15 @@ public class Player : Character
         rb = GetComponent<Rigidbody2D>();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
 
+        //SET SPRITERENDERER TO OPAQUE
+        Color colorOpaque = spriteRenderer.color;
+        colorOpaque.a = 0f;
+        spriteRenderer.color = colorOpaque;
+        //
+
+        animator = GetComponent<Animator>();
+        
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
 
@@ -206,18 +213,6 @@ public class Player : Character
             grounded = false;
         }
 
-        animator.SetFloat("Speed", Mathf.Abs(velocity.x));
-
-
-
-
-        //Movement speed
-
-
-        float targetVelocityX = input.x * moveSpeed;
-        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
-
-        velocity.y += gravity * Time.deltaTime;
 
 
         //sets animation parameters for the individual bodyparts.
@@ -229,6 +224,18 @@ public class Player : Character
            // g.MyAnimator.SetFloat("Speed", g.Speed);
            // g.MyAnimator.SetBool("OnGround", g.OnGround);
         }
+        animator.SetFloat("Speed", Mathf.Abs(velocity.x));
+
+
+        //Movement speed
+
+
+        float targetVelocityX = input.x * moveSpeed;
+        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+
+        velocity.y += gravity * Time.deltaTime;
+
+
 		
         
     }
