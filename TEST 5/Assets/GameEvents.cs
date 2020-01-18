@@ -103,6 +103,15 @@ public class GameEvents : MonoBehaviour
         }
     }
 
+    public event Action onPlayerDamage;
+    public void PlayerDamage()
+    {
+        if (onPlayerDamage != null)
+        {
+            onPlayerDamage();
+        }
+    }
+
     #endregion
 
     

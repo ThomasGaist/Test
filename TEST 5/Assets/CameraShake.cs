@@ -6,12 +6,18 @@ public class CameraShake : MonoBehaviour
 {
     [SerializeField]
     Camera camera;
-    [SerializeField]
-    int OIJF;
+
+    private GameEvents eventsystem;
+
+    private void Start()
+    {
+        eventsystem = GameEvents.current;
+        eventsystem.onEnemyDamage += EnemyDamageShake;
+        eventsystem.onPlayerDamage += PlayerDamageShake;
+    }
 
     private void Awake()
     {
-        GameEvents.current.onEnemyDamage += EnemyDamageShake;
     }
     public IEnumerator Shake(float duration, float magnitude)
     {
@@ -36,5 +42,10 @@ public class CameraShake : MonoBehaviour
     {
         StartCoroutine(Shake(0.1f, 0.15f));
     }
- }
+
+    void PlayerDamageShake()
+    {
+        StartCoroutine(Shake(0.2f, 0.2f));
+    }
+}
 

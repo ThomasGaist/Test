@@ -318,6 +318,7 @@ public class Player : Character
     public void PlayerDamage(int enemyDamage)
     {
         Health -= enemyDamage;
+        eventsystem.PlayerDamage();
     }
 
     public override void Death()

@@ -45,7 +45,7 @@ public class EnemyAttack : MonoBehaviour
    
     private void MeleeAttack()
     {
-        Collider2D[] damageTarget = Physics2D.OverlapCircleAll(attackPosition.position, attackRange, attackLayerMask);
+        Collider2D damageTarget = Physics2D.OverlapCircle(attackPosition.position, attackRange, attackLayerMask);
         AttackDamageTotal = CalculateAttack();
         player.PlayerDamage(AttackDamageTotal);
     }
