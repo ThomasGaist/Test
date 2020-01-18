@@ -102,7 +102,10 @@ public class Enemy : Character
         {
             num = 0;
         }
+
+        healthBar.GetComponentInChildren<Text>().text = $"{health} / {maxHealth}";
         //unique instances
+
 
         lootDropper = FindObjectOfType<LootTables>();
 
@@ -248,7 +251,7 @@ public class Enemy : Character
         float max = maxHealth * 1;
        
         healthBar.fillAmount = current/max;
-       
+        healthBar.GetComponentInChildren<Text>().text = $"{health} / {maxHealth}";
         
         Damage();
     }
@@ -278,7 +281,7 @@ public class Enemy : Character
         this.enabled = false;
         this.tag = "DeadEnemy";
         healthBar.GetComponentInParent<Canvas>().enabled = false;
-        //eventsystem.onEnemyDamage -= Damage;
+        
 
     }
 
