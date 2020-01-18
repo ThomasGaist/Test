@@ -114,5 +114,9 @@ public class GameEvents : MonoBehaviour
 
     #endregion
 
-    
+    #region UI EVENTS
+   
+
+    #endregion
+
 }

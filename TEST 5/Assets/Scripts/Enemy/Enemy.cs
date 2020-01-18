@@ -2,12 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Enemy : Character
+public class Enemy : Character 
 {
 
-    [SerializeField]
-    private GameObject lootForDrop;
 
     private SpriteRenderer sr;
 
@@ -22,7 +21,6 @@ public class Enemy : Character
     #region VITALS and LEVEL
 
     private int level = 1;
-
    
     private LootTables lootDropper;
     private int lootlevel = 0;
@@ -30,8 +28,7 @@ public class Enemy : Character
 
     public int EnemyLevel { get => level; set => level = value; }
     public int EnemyHealth { get => health; set => health = value; }
-    [SerializeField]
-    private int maxHealth;
+   
 
     //ATTACK PARAMETERS
 
@@ -41,6 +38,10 @@ public class Enemy : Character
     [SerializeField]
     private float rangedAttackDamage;
     public float RangedAttackDamage { get => rangedAttackDamage; }
+    #endregion
+
+    #region UI
+    public Image healthBar;
     #endregion
 
     #region EVENTS
@@ -242,6 +243,13 @@ public class Enemy : Character
     public void TakeHitDamage(int damage)
     {
         health -= damage;
+
+        float current = EnemyHealth * 1;
+        float max = maxHealth * 1;
+       
+        healthBar.fillAmount = current/max;
+       
+        
         Damage();
     }
 
@@ -269,7 +277,7 @@ public class Enemy : Character
 
         this.enabled = false;
         this.tag = "DeadEnemy";
-        
+        healthBar.GetComponentInParent<Canvas>().enabled = false;
         //eventsystem.onEnemyDamage -= Damage;
 
     }

@@ -8,9 +8,8 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     protected int health;
 
-
     [SerializeField]
-    private EdgeCollider2D SwordCollider;
+    protected int maxHealth;
 
     [SerializeField]
     private List<string> damageSources;
@@ -34,6 +33,7 @@ public abstract class Character : MonoBehaviour
 		facingRight = true;
 		//spriteRenderer = GetComponent<SpriteRenderer>();
 		Animator = GetComponent<Animator>();
+        health = maxHealth;
 
 	}
 
