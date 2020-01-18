@@ -44,6 +44,14 @@ public class GameEvents : MonoBehaviour
             onEnemyInstantiation();
         }
     }
+    public event Action onEnemyAttack;
+    public void EnemyAttacking()
+    {
+        if (onEnemyAttack != null)
+        {
+            onEnemyAttack();
+        }
+    }
 
     #endregion
 

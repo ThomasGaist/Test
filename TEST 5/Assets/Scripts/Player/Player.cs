@@ -43,7 +43,7 @@ public class Player : Character
 
 	public float jumpHeight = 4;
     public float timeToJumpApex = .4f;
-
+    public int Health { get => health; set => health = value; }
 
     private bool immortal = false;
     public Vector3 startPos;
@@ -312,9 +312,12 @@ public class Player : Character
                 //Death();
             }
         }
-      
-       
-        
+ 
+    }
+
+    public void PlayerDamage(int enemyDamage)
+    {
+        Health -= enemyDamage;
     }
 
     public override void Death()

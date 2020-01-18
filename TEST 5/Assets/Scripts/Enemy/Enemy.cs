@@ -32,8 +32,15 @@ public class Enemy : Character
     public int EnemyHealth { get => health; set => health = value; }
     [SerializeField]
     private int maxHealth;
- 
 
+    //ATTACK PARAMETERS
+
+    [SerializeField]
+    private float meleeAttackDamage;
+    public float MeleeAttackDamage { get => meleeAttackDamage; }
+    [SerializeField]
+    private float rangedAttackDamage;
+    public float RangedAttackDamage { get => rangedAttackDamage; }
     #endregion
 
     #region EVENTS
@@ -267,32 +274,8 @@ public class Enemy : Character
 
     }
 
-    #region UNUSED CODE
-    /*
-        //Loot method
-        private void MakeLoot()
-        {
-            if(ThisLoot != null)
-            {
-                lootForDrop.GetComponent<SpriteRenderer>().enabled = false;
-
-                Item current = ThisLoot.lootDrop();
-                lootForDrop.GetComponent<DroppedLoot>().MyDroppedLoot = current;
-                if(current != null)
-                {
-                    lootForDrop.GetComponent<SpriteRenderer>().enabled = true;
-                    lootForDrop.GetComponent<DroppedLoot>().Dropped = true;
-                    lootForDrop.GetComponent<DroppedLoot>().Layer++;
-                    if(lootForDrop.GetComponent<DroppedLoot>().Layer >= 1000)
-                    {
-                        lootForDrop.GetComponent<DroppedLoot>().Layer = 0;
-                    }
-                    GameObject nextLoot = Instantiate(lootForDrop, new Vector3((transform.position.x + Random.Range(-20.0f,20.0f)), transform.position.y, transform.position.z), Quaternion.identity);
-                    nextLoot.GetComponent<SpriteRenderer>().sortingOrder = lootForDrop.GetComponent<DroppedLoot>().Layer;
-                    nextLoot.active = true;
-
-                }
-            }
-        }*/
-    #endregion
+   public void TriggerAttackEvent()
+    {
+        GameEvents.current.EnemyAttacking();
+    }
 }

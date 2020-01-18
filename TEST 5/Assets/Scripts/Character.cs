@@ -53,11 +53,6 @@ public abstract class Character : MonoBehaviour
 		transform.localScale = new Vector3(transform.localScale.x * -1, 1, 1);
 	}
 
-    public void MeleeAttack()
-    {
-        SwordCollider.enabled = !SwordCollider.enabled;
-    }
-
     public virtual void OnTriggerEnter2D(Collider2D other)
     {
         if(damageSources.Contains(other.tag))
