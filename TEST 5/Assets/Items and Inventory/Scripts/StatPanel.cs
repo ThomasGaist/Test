@@ -7,12 +7,19 @@ public class StatPanel : MonoBehaviour
     [SerializeField] string[] statNames;
 
     private CharacterStat[] stats;
-
+    private GameEvents eventsystem;
     private void Awake() //alternatively OnValidate if needed
     {
         statDisplays = GetComponentsInChildren<StatDisplay>();
         UpdateStatNames();
         //UpdateStatValues();
+    }
+    private void Start()
+    {
+        eventsystem = GameEvents.current;
+
+        eventsystem.onItemEquipped += UpdateStatValues;
+        eventsystem.onItemUnEquipped += UpdateStatValues;
     }
 
     public void SetStats(params CharacterStat[] charstats)

@@ -191,11 +191,15 @@ public class InventoryManager : MonoBehaviour
           nextLoot.name = nextLoot.GetComponent<DroppedLoot>().MyDroppedLoot.ItemName;
 
             //Destroy(draggedSlot.Item);
-          draggedSlot.Item = null;
+       
         if(draggedSlot is EquipmentSlot)
         {
+            EquippableItem dragItem = draggedSlot.Item as EquippableItem;
+            dragItem.Unequip(this);
+
             GameEvents.current.ItemUnEquipped();
         }
+          draggedSlot.Item = null;
             nextLoot.SetActive(true);
         
     }
