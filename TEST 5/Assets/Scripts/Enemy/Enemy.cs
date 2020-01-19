@@ -41,7 +41,11 @@ public class Enemy : Character
     #endregion
 
     #region UI
-    public Image healthBar;
+    [SerializeField]
+    private Image healthBar;
+
+    [SerializeField]
+    private GameObject healthBarUI;
     #endregion
 
     #region EVENTS
@@ -50,6 +54,9 @@ public class Enemy : Character
     #endregion
 
     #region ID
+
+    [SerializeField]
+    private string enemyName;
    
     private int num = 1;
    
@@ -85,6 +92,7 @@ public class Enemy : Character
     public override void Start()
     {
         eventsystem = GameEvents.current;
+        eventsystem.EnemyInstantiated();
         //eventsystem.onEnemyDamage += Damage;
       
 
@@ -103,14 +111,16 @@ public class Enemy : Character
             num = 0;
         }
 
-        healthBar.GetComponentInChildren<Text>().text = $"{health} / {maxHealth}";
+
+        //healthBar.GetComponentInChildren<Text>().text = $"{health} / {maxHealth}";
         //unique instances
-
-
+       
         lootDropper = FindObjectOfType<LootTables>();
 
         ChangeState(new IdleState());
 
+        healthBarUI = GameObject.Find("Enemy Health Bar Holder").GetComponent<EnemyHealthBarUI>().enemyHealthBarUI;
+        healthBar = GameObject.Find("Enemy Health Bar Holder").GetComponent<EnemyHealthBarUI>().enemyHealthBar;
       
     }
   
@@ -249,11 +259,9 @@ public class Enemy : Character
 
         float current = EnemyHealth * 1;
         float max = maxHealth * 1;
-       
-        healthBar.fillAmount = current/max;
-        healthBar.GetComponentInChildren<Text>().text = $"{health} / {maxHealth}";
-        
-        Damage();
+
+        SetHealthBarUI();
+               Damage();
     }
 
     public override IEnumerator TakeDamage()
@@ -280,7 +288,7 @@ public class Enemy : Character
 
         this.enabled = false;
         this.tag = "DeadEnemy";
-        healthBar.GetComponentInParent<Canvas>().enabled = false;
+        healthBarUI.SetActive(false);
         
 
     }
@@ -289,4 +297,49 @@ public class Enemy : Character
     {
         GameEvents.current.EnemyAttacking();
     }
+
+
+    //UI METHODS
+
+    private void OnMouseOver()
+    {
+        if (tag != "DeadEnemy")
+        {
+            healthBarUI.SetActive(true);
+            SetHealthBarUI();
+        }
+        
+    }
+    private void OnMouseExit()
+    {
+        if (tag != "DeadEnemy")
+        {
+            healthBarUI.SetActive(false);
+        }
+    }
+
+   void SetHealthBarUI()
+    {
+        float current = EnemyHealth * 1;
+        float max = maxHealth * 1;
+
+        healthBar.fillAmount = current / max;
+
+        Text[] texts;
+        texts = healthBar.GetComponentsInChildren<Text>();
+        foreach (Text text in texts)
+        {
+            text.enabled = true;
+            if (text.name == "Enemy Health")
+            {
+                text.text = $"{health} / {maxHealth}";
+            }
+            else if (text.name == "Enemy Name")
+            {
+                text.text = enemyName;
+            }
+        }
+    }
 }
+
+
