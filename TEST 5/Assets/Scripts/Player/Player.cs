@@ -70,7 +70,7 @@ public class Player : Character
     private float attackDamage;
 
     [SerializeField]
-    public KeyCode attackKey = KeyCode.F;
+    public KeyCode[] attackKeys = { KeyCode.F, KeyCode.Mouse0 };
 
     //COMPONENTS
     Controller2D controller;
@@ -260,10 +260,14 @@ public class Player : Character
 
     private void HandleInput()
     {
-        if (Input.GetKeyDown(attackKey)) 
+        for (int i = 0; i < attackKeys.Length; i++)
+        {
+
+        if (Input.GetKeyDown(attackKeys[i])) 
         {
             eventsystem.PlayerAttack();
             attacking = true;
+        }
         }
 
     }

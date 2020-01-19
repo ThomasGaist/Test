@@ -15,7 +15,7 @@ public class BuildDemoText : MonoBehaviour
     {
         text = GetComponentInChildren<Text>();
         player = FindObjectOfType<Player>();
-        text.text = $"{mobSpawner.mobSpawnKey}: Spawn enemy\n{player.attackKey}: Attack enemy (no attack animation yet)\nC: Inventory\nE: Pick up items\n{FindObjectOfType<PauseMenu>().pauseKey}: Pause game\n\nIn this demo you don't take damage from the enemies";
+        text.text = $"{mobSpawner.mobSpawnKey}: Spawn enemy\n{player.attackKeys}: Attack enemy (no attack animation yet)\nC: Inventory\nE: Pick up items\n{FindObjectOfType<PauseMenu>().pauseKey}: Pause game\n\nIn this demo you don't take damage from the enemies";
     }
     private void Update()
     {

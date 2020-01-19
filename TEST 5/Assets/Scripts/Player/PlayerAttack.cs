@@ -32,7 +32,7 @@ public class PlayerAttack : MonoBehaviour
     {
         player = Player.Instance;
         eventsystem = GameEvents.current;
-        //eventsystem.onPlayerAttack += Attack;
+        eventsystem.onPlayerAttack += Attack;
         
     }
 
@@ -65,10 +65,10 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(player.attackKey))
+       /* if (Input.GetKeyDown(player.attackKey))
         {
             Attack();
-        }
+        }*/
     }
 
     private void MeleeAttack()

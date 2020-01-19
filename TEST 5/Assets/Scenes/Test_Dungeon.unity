@@ -15977,7 +15977,7 @@ MonoBehaviour:
   accelerationTimeGrounded: 0.001
   moveSpeed: 80.6
   attackDamage: 10
-  attackKey: 102
+  attackKeys: 6600000043010000
 --- !u!114 &8666341819891921789
 MonoBehaviour:
   m_ObjectHideFlags: 0
