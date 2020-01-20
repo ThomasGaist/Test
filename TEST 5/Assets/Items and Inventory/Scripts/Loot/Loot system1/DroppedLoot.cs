@@ -8,8 +8,10 @@ public class DroppedLoot: MonoBehaviour
 {
     [SerializeField]
     private Item droppedLoot;
-
+    [HideInInspector]
     public Text lootNameText;
+
+    public Image lootNameImage;
     
    
     public Item MyDroppedLoot { get => droppedLoot; set => droppedLoot = value; }
@@ -32,24 +34,24 @@ public class DroppedLoot: MonoBehaviour
     float thrust = 1.0f;
     [SerializeField]
     private int layer = -1;
+    [SerializeField]
+    private Inventory inventory;
 
-    [SerializeField] Inventory inventory;
     [SerializeField] KeyCode itemPickUp = KeyCode.E;
 
     [SerializeField]
     private bool isInRange;
 
     //TIMING WHEN LOOT IS ON FLOOR
-    bool onFloorTimer = false;
+    bool onFloorTimer;
 
+    public Rect lootNameRect;
     private void Awake()
     {
-
-
-        if (inventory == null)
+       /* if (inventory == null)
         {
             inventory = FindObjectOfType<Inventory>();
-        }
+        }*/
 
         ID = MyDroppedLoot.ID;
     }
@@ -58,6 +60,7 @@ public class DroppedLoot: MonoBehaviour
 
     private void Start()
     {
+        onFloorTimer = false;
         sr = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
@@ -72,15 +75,22 @@ public class DroppedLoot: MonoBehaviour
         //Physics2D.IgnoreLayerCollision(13, 11);
 
         StartCoroutine(DropTimer());
-    }
-    private void Update()
-    {  
+
         sr.sprite = MyDroppedLoot.Icon;
         collider.offset = new Vector2(0, 0);
-        collider.size = new Vector3(sr.bounds.size.x / transform.lossyScale.x, sr.bounds.size.y / transform.lossyScale.y, sr.bounds.size.z / transform.lossyScale.z);
+        // collider.size = new Vector3(sr.bounds.size.x / transform.lossyScale.x, sr.bounds.size.y / transform.lossyScale.y, sr.bounds.size.z / transform.lossyScale.z);
+        Vector2 colliderSize = sr.sprite.bounds.size;
+        collider.size = colliderSize;
         trigger.radius = triggerRadius;
         sr.sortingOrder = Layer;
 
+        //SET RECT FOR LOOTDETECTOR
+        lootNameRect = new Rect(GetComponentInChildren<RectTransform>().localPosition.x,GetComponentInChildren<RectTransform>().localPosition.y,GetComponentInChildren<RectTransform>().rect.width,GetComponentInChildren<RectTransform>().rect.height);
+        lootNameImage = lootNameText.GetComponentInParent<Image>();
+
+    }
+    private void Update()
+    {  
 
         //Implement code for when inventory is full
 
@@ -133,12 +143,18 @@ public class DroppedLoot: MonoBehaviour
     }
     private void OnMouseOver()
     {
+        if (onFloorTimer)
+        {
         ShowLootName();
+        }
         
     }
     private void OnMouseExit()
     {
+        if (onFloorTimer)
+        {
         HideLootName();
+        }
     }
 
     public void ShowLootName()
@@ -156,7 +172,7 @@ public class DroppedLoot: MonoBehaviour
 
     IEnumerator DropTimer()
     {
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(0.5f);
         onFloorTimer = true;
         StopCoroutine(DropTimer());
     }

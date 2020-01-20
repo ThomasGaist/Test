@@ -43,13 +43,18 @@ public class Player : Character
 
 	public float jumpHeight = 4;
     public float timeToJumpApex = .4f;
-    public int Health { get => health; set => health = value; }
+    public int Health { get => base.health; set => base.health = value; }
 
     private bool immortal = false;
     public Vector3 startPos;
 
     [SerializeField]
     private float immortalTime;
+
+    //PLAYER VITALS
+   
+    public int MaxHealth { get => base.maxHealth; set => base.maxHealth = value; }
+
 
     //MOVEMENT
     float accelerationTimeAirborne = .2f;
@@ -128,6 +133,8 @@ public class Player : Character
         gearsockets = GetComponentsInChildren<GearSocket>();
         //EVENTS
 
+        //HEALTH
+        Health = MaxHealth;
 
         //ATTACK
         //needs to be calculated based on weapondamage, skills, buff etc.

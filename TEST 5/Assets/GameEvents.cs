@@ -115,7 +115,22 @@ public class GameEvents : MonoBehaviour
     #endregion
 
     #region UI EVENTS
-   
+    public event Action onShowLoot;
+    public void ShowLootOnGround()
+    {
+        if(onShowLoot!= null)
+        {
+            onShowLoot();
+        }
+    }
+    public event Action onOverLappingLootNames;
+    public void OverLappingLootNames()
+    {
+        if(onOverLappingLootNames != null)
+        {
+            onOverLappingLootNames();
+        }
+    }
 
     #endregion
 

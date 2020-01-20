@@ -38,6 +38,7 @@ public class LootTables : MonoBehaviour
     private Player player;
     
     public bool MyLootDropped { get => lootDropped;}
+    public GameObject LootForDrop { get => lootForDrop;}
 
     #endregion
 

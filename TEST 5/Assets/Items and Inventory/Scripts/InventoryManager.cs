@@ -34,6 +34,7 @@ public class InventoryManager : MonoBehaviour
             itemToolTip = FindObjectOfType<ItemToolTip>();
         }
         //statPanel.UpdateStatValues();
+        //lootForDrop = FindObjectOfType<LootTables>().LootForDrop;
     }
 
     private void Awake()
@@ -74,6 +75,7 @@ public class InventoryManager : MonoBehaviour
 
         dropItemArea.OnDropEvent += DropItemOutsideUI;
 
+
     }
     private void Update()
     {
@@ -97,7 +99,7 @@ public class InventoryManager : MonoBehaviour
         if (equippableItem != null)
         {
             Unequip(equippableItem);
-            GameEvents.current.ItemEquipped();
+           // GameEvents.current.ItemEquipped();
         }
     }
 
@@ -196,10 +198,10 @@ public class InventoryManager : MonoBehaviour
         {
             EquippableItem dragItem = draggedSlot.Item as EquippableItem;
             dragItem.Unequip(this);
-
+            draggedSlot.Item = null;
             GameEvents.current.ItemUnEquipped();
         }
-          draggedSlot.Item = null;
+            draggedSlot.Item = null;
             nextLoot.SetActive(true);
         
     }
@@ -215,6 +217,7 @@ public class InventoryManager : MonoBehaviour
                 if(previousItem != null)
                 {
                     inventory.AddItem(previousItem);
+                    GameEvents.current.ItemUnEquipped();
                     previousItem.Unequip(this);
                     statPanel.UpdateStatValues();
                    
@@ -233,6 +236,7 @@ public class InventoryManager : MonoBehaviour
         if(!inventory.IsFull() && equipmentPanel.RemoveItem(item))
         {
             item.Unequip(this);
+            GameEvents.current.ItemUnEquipped();
             statPanel.UpdateStatValues();
             inventory.AddItem(item);
         }
