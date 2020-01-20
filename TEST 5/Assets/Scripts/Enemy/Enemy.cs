@@ -21,6 +21,9 @@ public class Enemy : Character
     #region VITALS and LEVEL
 
     private int level = 1;
+    [SerializeField]
+    private int xPDrop;
+    public int EnemyXPDrop { get => xPDrop; }
    
     private LootTables lootDropper;
     private int lootlevel = 0;

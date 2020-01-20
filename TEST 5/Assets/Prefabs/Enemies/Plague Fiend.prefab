@@ -511,6 +511,7 @@ MonoBehaviour:
   attack: 0
   movementSpeed: 90
   chaseMultiplier: 1.2
+  xPDrop: 6
   meleeAttackDamage: 10
   rangedAttackDamage: 0
   healthBar: {fileID: 0}

@@ -39,7 +39,8 @@ public class Player : Character
     private bool flipped;
 
     //PLAYER LEVEL
-    private int level = 10;
+    private int level = 1;
+    public int PlayerLevel { get => level; set => level = value; }
 
 	public float jumpHeight = 4;
     public float timeToJumpApex = .4f;

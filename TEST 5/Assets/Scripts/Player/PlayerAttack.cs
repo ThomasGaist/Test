@@ -78,7 +78,17 @@ public class PlayerAttack : MonoBehaviour
         foreach (Collider2D enemy in enemiesToDamage)
         {
             enemy.GetComponent<Enemy>().TakeHitDamage(AttackDamageTotal);
-           // enemy.GetComponent<Enemy>().hit = true; 
+            //PlayerLevel.playerXP += enemy.GetComponent<Enemy>().EnemyXPDrop;
+
+        }
+        foreach (Collider2D enemy in enemiesToDamage)
+        {
+            
+            if (enemy.GetComponent<Enemy>().EnemyHealth <= 0 && !enemy.CompareTag("DeadEnemy"))
+            {
+                PlayerLevel.playerXP += enemy.GetComponent<Enemy>().EnemyXPDrop;
+            }
+
         }
     }
     private int CalculateAttack()
