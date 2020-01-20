@@ -133,5 +133,25 @@ public class GameEvents : MonoBehaviour
     }
 
     #endregion
+    #region PLAYER LEVELLING
+    public event Action onLevelChanged;
+    public void LevelChanged()
+    {
+        if(onLevelChanged!= null)
+        {
+            onLevelChanged();
+        }
+    }
+
+    public event Action onXPChanged;
+    public void XPChanged()
+    {
+        if(onXPChanged != null)
+        {
+            onXPChanged();
+        }
+    }
+
+    #endregion
 
 }

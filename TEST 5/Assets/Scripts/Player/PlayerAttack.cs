@@ -86,7 +86,9 @@ public class PlayerAttack : MonoBehaviour
             
             if (enemy.GetComponent<Enemy>().EnemyHealth <= 0 && !enemy.CompareTag("DeadEnemy"))
             {
+                //ADD XP OF DEAD ENEMIES
                 PlayerLevel.playerXP += enemy.GetComponent<Enemy>().EnemyXPDrop;
+                eventsystem.XPChanged();
             }
 
         }
