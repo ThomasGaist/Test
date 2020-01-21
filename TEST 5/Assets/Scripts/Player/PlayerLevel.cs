@@ -27,6 +27,7 @@ public class PlayerLevel : MonoBehaviour
 
     public static void SetXPForNextLevel()
     {
+        //ARITHMETIC PROGRESSION
         xPForNextLevel = 25 * Level*(1+Level);
     }
 }

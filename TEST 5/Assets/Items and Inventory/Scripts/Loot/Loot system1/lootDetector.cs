@@ -28,6 +28,10 @@ public class lootDetector : MonoBehaviour
     private List<DroppedLoot> lootItems = new List<DroppedLoot>();
 
     GameEvents eventsystem;
+
+  
+    public List<DroppedLoot> LootItems { get => lootItems;}
+
     private void Start()
     {
         eventsystem = GameEvents.current;
@@ -46,13 +50,15 @@ public class lootDetector : MonoBehaviour
             lootNames.Add(collision.GetComponent<DroppedLoot>().MyDroppedLoot.ItemName);
             lootID.Add(collision.GetComponent<DroppedLoot>().MyDroppedLoot.ID);
             lootItems.Add(collision.GetComponent<DroppedLoot>());
-            
-            
+       
+
+
         }
         else
         {
             return;
         }
+       
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -62,10 +68,13 @@ public class lootDetector : MonoBehaviour
             lootOnGround.Remove(collision.GetComponent<DroppedLoot>());
             lootNames.Remove(collision.GetComponent<DroppedLoot>().MyDroppedLoot.ItemName);
             lootID.Remove(collision.GetComponent<DroppedLoot>().MyDroppedLoot.ID);
+
+
             if (collision.GetComponent<DroppedLoot>())
             {
                 collision.GetComponent<DroppedLoot>().HideLootName();
             }
+
             lootItems.Remove(collision.GetComponent<DroppedLoot>());
         }
     }

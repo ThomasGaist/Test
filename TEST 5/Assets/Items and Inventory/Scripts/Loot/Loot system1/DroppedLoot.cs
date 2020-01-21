@@ -40,7 +40,7 @@ public class DroppedLoot: MonoBehaviour
     [SerializeField] KeyCode itemPickUp = KeyCode.E;
 
     [SerializeField]
-    private bool isInRange;
+    public bool isInRange;
 
     //TIMING WHEN LOOT IS ON FLOOR
     bool onFloorTimer;
@@ -135,10 +135,11 @@ public class DroppedLoot: MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (!inventory.IsFull())
+        if (!inventory.IsFull() && isInRange == true)
         {
             inventory.AddItem(Instantiate(MyDroppedLoot));
             Destroy(gameObject);
+
         }
     }
     private void OnMouseOver()
