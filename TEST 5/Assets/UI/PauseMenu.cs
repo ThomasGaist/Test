@@ -8,7 +8,14 @@ public class PauseMenu : MonoBehaviour
     public KeyCode pauseKey = KeyCode.Escape;
     [SerializeField]
     private GameObject pauseMenuUI;
+
+    private Player player;
     // Update is called once per frame
+
+    private void Awake()
+    {
+        player = FindObjectOfType<Player>();
+    }
     void Update()
     {
         if (Input.GetKeyDown(pauseKey))
@@ -49,4 +56,6 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Quitting Game");
         Application.Quit();
     }
+
+   
 }
