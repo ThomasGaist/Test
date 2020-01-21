@@ -14,9 +14,10 @@ public class PlayerBars : MonoBehaviour
     [SerializeField]
     private Image XPBar;
     private Text levelIndicator;
+    [SerializeField]
+    private Text xPIndicator;
     private int playerLevel;
     private int playerXP;
-    private int XPForNextLevel = 70;
     private GameEvents eventsystem;
     private void Start()
     {
@@ -24,8 +25,12 @@ public class PlayerBars : MonoBehaviour
         player = FindObjectOfType<Player>();
         healthFill = GetComponent<Image>();
         levelIndicator = XPBar.GetComponentInChildren<Text>();
+       
         eventsystem.onXPChanged += fillXPBar;
         eventsystem.onLevelChanged += ChangePlayerLevel;
+
+
+        UpdateXPIndicator();
     }
 
     private void Update()
@@ -47,17 +52,25 @@ public class PlayerBars : MonoBehaviour
       
         playerXP = PlayerLevel.playerXP;
         float xp = playerXP * 1f;
-        XPBar.fillAmount = xp/ XPForNextLevel*1f;
-        if(XPBar.fillAmount >= 1)
+        XPBar.fillAmount = xp/ PlayerLevel.xPForNextLevel*1f;
+        if (XPBar.fillAmount >= 1)
         {
-            player.MyPlayerLevel++;
+            PlayerLevel.Level++;
+            PlayerLevel.SetXPForNextLevel();
             eventsystem.LevelChanged();
-            PlayerLevel.playerXP = 0;
+           
+
         }
+        UpdateXPIndicator();
     }
 
     void ChangePlayerLevel()
     {
-        levelIndicator.text = $"{player.MyPlayerLevel}";
+        levelIndicator.text = $"{PlayerLevel.Level}";
+    }
+
+    void UpdateXPIndicator()
+    {
+        xPIndicator.text = $"{playerXP}/{PlayerLevel.xPForNextLevel}";
     }
 }

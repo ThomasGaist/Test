@@ -4,22 +4,29 @@ using UnityEngine;
 
 public class PlayerLevel : MonoBehaviour
 {
+    public static int Level;
     public static int playerXP;
+    public static int xPForNextLevel;
     private Player player;
-    private int playerLevel;
 
 
+
+    private void Awake()
+    {
+        xPForNextLevel = 50;
+        Level = 1;
+    }
     // Start is called before the first frame update
     void Start()
     {
         playerXP = 0;
         player = FindObjectOfType<Player>();
-        playerLevel = player.PlayerLevel;
+
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void SetXPForNextLevel()
     {
-        
+        xPForNextLevel = 25 * Level*(1+Level);
     }
 }

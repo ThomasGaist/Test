@@ -197,7 +197,7 @@ public class LootTables : MonoBehaviour
         //GOLD DROP AMOUNT CALCULATION
         if(current is Gold)
         {
-            ((Gold)current).GoldAmount = GoldDrop(enemy.GetComponent<Enemy>().EnemyLevel, player.MyPlayerLevel);
+            ((Gold)current).GoldAmount = GoldDrop(enemy.GetComponent<Enemy>().EnemyLevel, PlayerLevel.Level);
         }
         Instantiate(current);
         lootForDrop.GetComponent<DroppedLoot>().MyDroppedLoot = current;

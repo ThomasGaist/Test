@@ -39,8 +39,7 @@ public class Player : Character
     private bool flipped;
 
     //PLAYER LEVEL
-    private int level = 1;
-    public int PlayerLevel { get => level; set => level = value; }
+ 
 
 	public float jumpHeight = 4;
     public float timeToJumpApex = .4f;
@@ -102,7 +101,7 @@ public class Player : Character
 
     public float CurrentSpeed { get => currentSpeed;}
     public bool Flipped { get => flipped;}
-    public int MyPlayerLevel { get => level; set => level = value; }
+
     public float MyAttackDamage { get => attackDamage; set => attackDamage = value; }
 
     //EVENTS
@@ -110,6 +109,7 @@ public class Player : Character
 
     public override void Start()
     {
+
         eventsystem = GameEvents.current;
 
         controller = GetComponent<Controller2D>();
