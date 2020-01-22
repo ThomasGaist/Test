@@ -23,9 +23,19 @@ public class SaveLoadDataManager : MonoBehaviour
 
     public void SaveGame()
     {
+
         ES2.Save(player.MaxHealth, "max health");
         ES2.Save(PlayerLevel.Level, "player level");
         ES2.Save(PlayerLevel.playerXP, "player xp");
+        ES2.Save(player.transform.position, "player position");
       
+    }
+    public void LoadGame()
+    {
+        player.MaxHealth = ES2.Load<int>("max health");
+        PlayerLevel.Level = ES2.Load<int>("player level");
+        PlayerLevel.playerXP = ES2.Load<int>("player xp");
+        player.transform.position = ES2.Load<Vector3>("player position");
+
     }
 }

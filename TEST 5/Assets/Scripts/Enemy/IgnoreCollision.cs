@@ -10,9 +10,10 @@ public class IgnoreCollision : MonoBehaviour
 
     private void Awake()
     {
-        other = FindObjectOfType<Player>().GetComponent<BoxCollider2D>();
+        other = SetPlayer.player.GetComponent<Collider2D>();
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), other, true);
         Physics2D.IgnoreLayerCollision(12, 12);
+        Physics2D.IgnoreLayerCollision(12, 17);
     }
 
     private void OnDisable()

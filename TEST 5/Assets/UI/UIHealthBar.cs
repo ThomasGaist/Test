@@ -16,13 +16,19 @@ public class UIHealthBar : MonoBehaviour
     {
         bar = GetComponent<Image>();
         player = SetPlayer.player;
+        UpdateValues();
     }
 
     private void Update()
     {
+        UpdateValues();
+        bar.fillAmount = GetComponent<UIBarFill>().fillBar(current, max);
+    }
+
+    void UpdateValues()
+    {
         current = player.Health;
         max = player.MaxHealth;
-        bar.fillAmount = GetComponent<UIBarFill>().fillBar(current, max);
     }
 
 }

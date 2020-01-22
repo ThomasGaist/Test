@@ -121,10 +121,11 @@ public class InventoryManager : MonoBehaviour
     {
         if(itemSlot.Item != null)
         {
-            draggedSlot = itemSlot;
+            draggedSlot = itemSlot; 
             draggableItem.sprite = itemSlot.Item.Icon;
             draggableItem.transform.position = Input.mousePosition;
             draggableItem.enabled = true;
+           
         }
 
     }
