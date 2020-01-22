@@ -12,9 +12,9 @@ public class PauseMenu : MonoBehaviour
     private Player player;
     // Update is called once per frame
 
-    private void Awake()
+    private void Start()
     {
-        player = FindObjectOfType<Player>();
+        player = SetPlayer.player;
     }
     void Update()
     {

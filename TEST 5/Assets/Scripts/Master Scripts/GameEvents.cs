@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameEvents : MonoBehaviour
 {
     public static GameEvents current;
+
     private void Awake()
     {
         if(current == null)
@@ -13,7 +14,6 @@ public class GameEvents : MonoBehaviour
             current = this;
         }
     }
-
 
     #region ENEMY EVENT
     public event Action onEnemyDeath;

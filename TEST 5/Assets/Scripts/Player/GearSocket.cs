@@ -135,7 +135,7 @@ public class GearSocket : MonoBehaviour
 
         MyAnimator.runtimeAnimatorController = animatorOverrideController;
 
-        player = GetComponentInParent<Player>();
+        player = SetPlayer.player;
 
         //find weaponsockets
         weaponSocket1 = GameObject.Find("Right Hand Weapon").GetComponent<GearSocket>();

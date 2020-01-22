@@ -20,7 +20,7 @@ public class PlayerLevel : MonoBehaviour
     void Start()
     {
         playerXP = 0;
-        player = FindObjectOfType<Player>();
+        player = SetPlayer.player;
 
 
     }

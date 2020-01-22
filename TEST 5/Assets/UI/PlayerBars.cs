@@ -22,7 +22,7 @@ public class PlayerBars : MonoBehaviour
     private void Start()
     {
         eventsystem = GameEvents.current;
-        player = FindObjectOfType<Player>();
+        player = SetPlayer.player;
         healthFill = GetComponent<Image>();
         levelIndicator = XPBar.GetComponentInChildren<Text>();
        
@@ -55,9 +55,7 @@ public class PlayerBars : MonoBehaviour
         XPBar.fillAmount = xp/ PlayerLevel.xPForNextLevel*1f;
         if (XPBar.fillAmount >= 1)
         {
-            PlayerLevel.Level++;
-            PlayerLevel.SetXPForNextLevel();
-            eventsystem.LevelChanged();
+           
            
 
         }

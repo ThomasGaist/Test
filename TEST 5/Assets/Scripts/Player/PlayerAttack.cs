@@ -30,7 +30,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Start()
     {
-        player = Player.Instance;
+        player = SetPlayer.player;
         eventsystem = GameEvents.current;
         eventsystem.onPlayerAttack += Attack;
         

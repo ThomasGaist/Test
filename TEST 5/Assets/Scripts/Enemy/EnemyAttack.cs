@@ -25,16 +25,12 @@ public class EnemyAttack : MonoBehaviour
 
     void Start()
     {
-        player = FindObjectOfType<Player>();
+        enemy = GetComponentInParent<Enemy>();
+        player = SetPlayer.player;
         eventsystem = GameEvents.current;
         eventsystem.onEnemyAttack += Attack;
         //eventsystem.onPlayerAttack += Attack;
 
-    }
-
-    private void Awake()
-    {
-       
     }
 
     private void Attack()

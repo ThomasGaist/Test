@@ -107,6 +107,12 @@ public class Player : Character
     //EVENTS
     private GameEvents eventsystem;
 
+    private void Awake()
+    {
+        SetPlayer.DefinePlayer(this);
+        
+    }
+
     public override void Start()
     {
 
