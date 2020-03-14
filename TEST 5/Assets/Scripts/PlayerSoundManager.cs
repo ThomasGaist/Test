@@ -8,7 +8,8 @@ public class PlayerSoundManager : MonoBehaviour
 
     [SerializeField]
     private AudioClip[] footsteps;
-
+    private int clipInt;
+    private int random;
     AudioSource audioSource;
 
     // Start is called before the first frame update
@@ -27,8 +28,14 @@ public class PlayerSoundManager : MonoBehaviour
     }
     private void FootSteps()
     {
-        int random = Random.Range(0, footsteps.Length);
+        random = Random.Range(0, footsteps.Length);
+        while(random == clipInt)
+        {
+            random = Random.Range(0, footsteps.Length);
+        }
 
-        audioSource.PlayOneShot(footsteps[random]);
+        clipInt = random;
+
+        audioSource.PlayOneShot(footsteps[clipInt]);
     }
 }
