@@ -112,6 +112,15 @@ public class GameEvents : MonoBehaviour
         }
     }
 
+    public event Action onPlayerFootstep;
+    public void PlayerFootstep()
+    {
+        if(onPlayerFootstep != null)
+        {
+            onPlayerFootstep();
+        }
+    }
+
     #endregion
 
     #region UI EVENTS

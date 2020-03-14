@@ -550,14 +550,18 @@ public class GearSocket : MonoBehaviour
         weapon1 = Weapon1Equipped();
         weapon2 = Weapon2Equipped();
 
+       
+
         if (weapon1 != null)
         {
             AddAnimations(weapon1, outerAnimations1, innerAnimations1);
             EquipWeapon(outerAnimations1, innerAnimations1, outerAnimations2, innerAnimations2);
+           
         }
         else if (weapon1 == null)
         {
             RemoveAnimations(outerAnimations1, innerAnimations1);
+
             EquipWeapon(outerAnimations1, innerAnimations1, outerAnimations2, innerAnimations2);
         }
 
@@ -565,10 +569,12 @@ public class GearSocket : MonoBehaviour
         {
             AddAnimations(weapon2, outerAnimations2, innerAnimations2);
             EquipWeapon(outerAnimations1, innerAnimations1, outerAnimations2, innerAnimations2);
+         
         }
         else if (weapon2 == null)
         {
             RemoveAnimations(outerAnimations2, innerAnimations2);
+
             EquipWeapon(outerAnimations1, innerAnimations1, outerAnimations2, innerAnimations2);
         }
 

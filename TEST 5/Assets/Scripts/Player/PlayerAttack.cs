@@ -33,6 +33,7 @@ public class PlayerAttack : MonoBehaviour
         player = SetPlayer.player;
         eventsystem = GameEvents.current;
         eventsystem.onPlayerAttack += Attack;
+     
         
     }
 
