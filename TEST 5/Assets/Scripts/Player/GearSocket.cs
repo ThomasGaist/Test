@@ -147,6 +147,7 @@ public class GearSocket : MonoBehaviour
         }
         else if (socketType == SocketType.ArmHand)
         {
+            /* Temporarily disabled, no onehanded animations, except for torches in the future. 
             WeaponsEquipped();
 
             if (oneHandedEquipped1 == true)
@@ -165,7 +166,7 @@ public class GearSocket : MonoBehaviour
             if (oneHandedEquipped1 == true && oneHandedEquipped2 == true)
             {
                 EquipWeapons(outerNoWeapon, innerNoWeapon, outerOneHanded, innerOneHanded);
-            }
+            }*/
         }
 
         else if (socketType == SocketType.Weapon)
@@ -222,6 +223,7 @@ public class GearSocket : MonoBehaviour
         {
             UnEquip(DefaultClips);
         }
+        /* enable with torch animations
         else if (socketType == SocketType.ArmHand)
         {
 
@@ -242,7 +244,8 @@ public class GearSocket : MonoBehaviour
             {
                 EquipWeapons(outerNoWeapon, innerNoWeapon, outerOneHanded, innerOneHanded);
             }
-        }
+            
+        }*/
         else if (socketType == SocketType.Weapon)
         {
             HandleWeaponSocket();
