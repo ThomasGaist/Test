@@ -147,22 +147,23 @@ public class GearSocket : MonoBehaviour
         }
         else if (socketType == SocketType.ArmHand)
         {
-            /* Temporarily disabled, no onehanded animations, except for torches in the future. 
+            //Temporarily disabled, no onehanded animations, except for torches in the future. 
             WeaponsEquipped();
 
-            if (oneHandedEquipped1 == true)
+           /* if (oneHandedEquipped1 == true)
             {
                 EquipWeapon1(outerNoWeapon, innerNoWeapon, outerOneHanded, innerOneHanded);
             }
             else if (oneHandedEquipped2 == true)
             {
                 EquipWeapon2(outerNoWeapon, innerNoWeapon, outerOneHanded, innerOneHanded);
-            }
-            else if (oneHandedEquipped1 == false && oneHandedEquipped2 == false)
+            }*/
+
+            if (oneHandedEquipped1 == false && oneHandedEquipped2 == false)
             {
                 UnEquip(defaultClips);
             }
-
+/*
             if (oneHandedEquipped1 == true && oneHandedEquipped2 == true)
             {
                 EquipWeapons(outerNoWeapon, innerNoWeapon, outerOneHanded, innerOneHanded);
