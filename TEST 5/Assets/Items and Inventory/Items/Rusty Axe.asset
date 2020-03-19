@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7a66690ec34493ab17424be58d88f6, type: 3}
   m_Name: Rusty Axe
   m_EditorClassIdentifier: 
-  id: 603b4dbb89d8d4a559d04f6f758b7044
+  id: '    (RDSObject)EquippableWeapon Prob:0, UAE:000'
   ItemName: Rusty Axe
   Icon: {fileID: 21300000, guid: a5b132c01e110477a93f27baf4cebd58, type: 3}
+  Rarity: 0
+  level: 0
   StrengthBonus: 0
   AgilityBonus: 2
   IntelligenceBonus: 0
@@ -30,11 +32,11 @@ MonoBehaviour:
   twoHandedWeapon: 0
   outerAnimationClips:
   - {fileID: 7400000, guid: 60bb033d742964dd39fa6c38c8f13643, type: 2}
-  - {fileID: 7400000, guid: be4b747557539422aa461859ec6914f2, type: 2}
+  - {fileID: 7400000, guid: a5a049f67312a47b087c84061a77e1f1, type: 2}
   - {fileID: 7400000, guid: 8b473f591a936437cba0b6a065144ef4, type: 2}
-  - {fileID: 7400000, guid: d7f131a460e5b4f718f7cdf15076c390, type: 2}
+  - {fileID: 7400000, guid: 5af24ad8be9aa421c87c019a4d3ca49c, type: 2}
   innerAnimationClips:
   - {fileID: 7400000, guid: 63e145ae5d87642d79245f613eb30abf, type: 2}
-  - {fileID: 7400000, guid: 0767b3334b78042da8368164e17ed4ec, type: 2}
+  - {fileID: 7400000, guid: a768b20e03be84c75994d1b5c6de7846, type: 2}
   - {fileID: 7400000, guid: d870ed4f4f3fd4f23808c980fafae9f9, type: 2}
-  - {fileID: 7400000, guid: 650bfec892c66401daec597be4016726, type: 2}
+  - {fileID: 7400000, guid: e759323970cd84154b6a47f34d94e53f, type: 2}
